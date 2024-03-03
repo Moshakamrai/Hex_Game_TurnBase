@@ -55,10 +55,10 @@
                 {
                     "name": "",
                     "id": "25f3f6a3-9f0d-4ea6-b1f0-0e9f1dc8d1c2",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
+                    "path": "<Mouse>/position",
+                    "interactions": "Hold",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Gamepad;Keyboard and Mouse",
                     "action": "Pan",
                     "isComposite": false,
                     "isPartOfComposite": false

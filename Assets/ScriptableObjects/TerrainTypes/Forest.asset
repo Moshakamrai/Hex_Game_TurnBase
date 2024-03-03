@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Forest
   m_EditorClassIdentifier: 
   ID: 1
-  <Name>k__BackingField: Forset
-  <Description>k__BackingField: This is a forest
+  <Name>k__BackingField: BOMBHEX
+  <Description>k__BackingField: Bomb Barrel
   <Colour>k__BackingField: {r: 0.11013707, g: 0.4245283, b: 0.15574785, a: 1}
   <Prefab>k__BackingField: {fileID: 5819090000748370972, guid: 04372d89e083cfa4fb71ca3b3dd4e096,
     type: 3}
   <Icon>k__BackingField: {fileID: 0}
+  <Material>k__BackingField: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa,
+    type: 2}
