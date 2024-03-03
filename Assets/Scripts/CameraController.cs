@@ -122,7 +122,7 @@ public class CameraController : Singleton<CameraController>
     {
         if (context.started)
         {
-            //Debug.Log("Focus button pressed... What's it gonna be?");
+            Debug.Log("Focus button pressed... What's it gonna be?");
         }
         else if (context.performed)
         {
