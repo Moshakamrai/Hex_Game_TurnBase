@@ -91,6 +91,7 @@ public class CameraController : Singleton<CameraController>
                 StopCoroutine(panCoroutine);
             }
         }
+
         //ChangeCamera(CameraMode.TopDown);
     }
 
