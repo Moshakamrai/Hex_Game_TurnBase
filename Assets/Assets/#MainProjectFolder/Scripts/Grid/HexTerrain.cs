@@ -11,11 +11,12 @@ public class HexTerrain : MonoBehaviour
     public event Action OnMouseExitAction;
     [SerializeField] private Material activeMatColor;
     private Collider parentCollider;
+    public bool canAction;
 
     private void Start()
     {
         parentCollider = GetComponent<Collider>();
-
+        
         // Disable collisions between the parent collider and all child colliders
         Collider[] childColliders = GetComponentsInChildren<Collider>();
         foreach (Collider childCollider in childColliders)
@@ -23,6 +24,8 @@ public class HexTerrain : MonoBehaviour
             childCollider.enabled = false;
         }
         parentCollider.enabled = true;
+
+        
     }
 
     private void OnMouseEnter()
@@ -47,6 +50,7 @@ public class HexTerrain : MonoBehaviour
     public void UnMesher()
     {
         gameObject.GetComponent<MeshRenderer>().enabled = false;
-        Debug.LogError("UNMESHER");
+       // Debug.LogError("UNMESHER");
+        //canMove = false;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b6b9d203d31094cb45651c663b761a, type: 3}
   m_Name: Mountains
   m_EditorClassIdentifier: 
-  ID: 4
+  <ID>k__BackingField: 2
   <Name>k__BackingField: Mountains
   <Description>k__BackingField: These are high!
   <Colour>k__BackingField: {r: 0.31621575, g: 0.3326334, b: 0.3584906, a: 1}
@@ -21,3 +21,5 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 0}
   <Material>k__BackingField: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa,
     type: 2}
+  possibleAction: 0
+  finishedAction: 0

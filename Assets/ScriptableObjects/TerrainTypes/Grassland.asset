@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b6b9d203d31094cb45651c663b761a, type: 3}
   m_Name: Grassland
   m_EditorClassIdentifier: 
-  ID: 0
+  <ID>k__BackingField: 0
   <Name>k__BackingField: Grassland
   <Description>k__BackingField: This is a grassy area. Farms would do well here.
   <Colour>k__BackingField: {r: 0.28475437, g: 0.745283, b: 0.310114, a: 1}
@@ -21,3 +21,5 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   <Material>k__BackingField: {fileID: 2100000, guid: 94a0d55eac9d2c946951a4b65e675408,
     type: 2}
+  possibleAction: 1
+  finishedAction: 0

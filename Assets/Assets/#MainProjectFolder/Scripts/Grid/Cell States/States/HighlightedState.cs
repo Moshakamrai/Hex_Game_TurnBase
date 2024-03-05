@@ -30,6 +30,17 @@ public class HighlightedState : BaseCellState
 
     public override ICellState OnSelect()
     {
+        if (SelectedState.storedHexcel != null )
+        {
+            SelectedState.storedHexcel.SetNeighbours(SelectedState.storedHexcel.Neighbours);
+            foreach (HexCell neighbour in SelectedState.storedHexcel.Neighbours)
+            {
+
+                neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+            }
+        }
+
+        
         return new SelectedState();
     }
 }

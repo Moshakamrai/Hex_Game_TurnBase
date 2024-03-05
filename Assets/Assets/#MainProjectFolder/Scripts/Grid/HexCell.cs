@@ -7,25 +7,26 @@ using UnityEngine;
 public class HexCell
 {
     [Header("Cell Properties")]
-    [SerializeField]private HexOrientation orientation;
-    [field:SerializeField] public HexGrid Grid { get; set; }
-    [field:SerializeField] public float HexSize { get; set; }
-    [field:SerializeField] public TerrainType TerrainType { get; private set; }
-    [field:SerializeField] public Vector2 OffsetCoordinates { get; set; }
-    [field:SerializeField] public Vector3 CubeCoordinates { get; private set; }
-    [field:SerializeField] public Vector2 AxialCoordinates { get; private set; }
-    [field:NonSerialized] public List<HexCell> Neighbours { get; private set; }
+    [SerializeField] private HexOrientation orientation;
+    [field: SerializeField] public HexGrid Grid { get; set; }
+    [field: SerializeField] public float HexSize { get; set; }
+    [field: SerializeField] public TerrainType TerrainType { get; private set; }
+    [field: SerializeField] public Vector2 OffsetCoordinates { get; set; }
+    [field: SerializeField] public Vector3 CubeCoordinates { get; private set; }
+    [field: SerializeField] public Vector2 AxialCoordinates { get; private set; }
+    [field: NonSerialized] public List<HexCell> Neighbours { get; private set; }
 
     [SerializeField]
     private CellState cellState;
     private ICellState state;
-    public ICellState State { 
-        get { return state; } 
-        private set 
+    public ICellState State
+    {
+        get { return state; }
+        private set
         {
             state = value;
             cellState = state.State;
-        } 
+        }
     }
 
     //private PlayerInput playerInput;
@@ -41,7 +42,25 @@ public class HexCell
             ChangeState(initalState);
 
     }
+    public IEnumerator MoveCameraToCell(HexCell cell)
+    {
+        Transform cameraTarget = CameraController.Instance.CameraTarget.transform;
+        Vector3 start = cameraTarget.position;
+        Vector3 end = cell.Terrain.transform.position;
+        float duration = 1.0f; // Adjust the duration as needed
 
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            cameraTarget.position = Vector3.Lerp(start, end, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        cameraTarget.position = end; // Ensure the final position is accurate
+        
+        PlayerStateScript.Instance.IdleAnimationTrigger();
+    }
 
     public void SetCoordinates(Vector2 offsetCoordinates, HexOrientation orientation)
     {
@@ -58,12 +77,12 @@ public class HexCell
 
     public void CreateTerrain()
     {
-        if(TerrainType == null)
+        if (TerrainType == null)
         {
             Debug.LogError("TerrainType is null");
             return;
         }
-        if(Grid == null)
+        if (Grid == null)
         {
             Debug.LogError("Grid is null");
             return;
@@ -80,28 +99,28 @@ public class HexCell
         }
 
         Vector3 centrePosition = HexMetrics.Center(
-            HexSize, 
-            (int)OffsetCoordinates.x, 
+            HexSize,
+            (int)OffsetCoordinates.x,
             (int)OffsetCoordinates.y, orientation
             ) + Grid.transform.position;
 
         terrain = UnityEngine.Object.Instantiate(
             TerrainType.Prefab,
-            centrePosition, 
-            Quaternion.identity, 
+            centrePosition,
+            Quaternion.identity,
             Grid.transform
             );
         terrain.gameObject.layer = LayerMask.NameToLayer("Grid");
 
         //TODO: Adjust the size of the prefab to the size of the grid cell
-        
-        if(orientation == HexOrientation.FlatTop)
+
+        if (orientation == HexOrientation.FlatTop)
         {
             terrain.Rotate(new Vector3(0, 30, 0));
         }
         //Temporary random rotation to make the terrain look more natural
         int randomRotation = UnityEngine.Random.Range(0, 6);
-        terrain.Rotate(new Vector3(0, randomRotation*60, 0));
+        terrain.Rotate(new Vector3(0, randomRotation * 60, 0));
         HexTerrain hexTerrrain = terrain.GetComponentInChildren<HexTerrain>();
         hexTerrrain.OnMouseEnterAction += OnMouseEnter;
         hexTerrrain.OnMouseExitAction += OnMouseExit;
@@ -116,7 +135,7 @@ public class HexCell
 
     public void ClearTerrain()
     {
-        if(terrain != null)
+        if (terrain != null)
         {
             HexTerrain hexTerrrain = terrain.GetComponent<HexTerrain>();
             hexTerrrain.OnMouseEnterAction -= OnMouseEnter;
@@ -127,16 +146,16 @@ public class HexCell
 
     public void ChangeState(ICellState newState)
     {
-        if(newState == null)
+        if (newState == null)
         {
             Debug.LogError("Trying to set null state.");
             return;
         }
 
-        if(State != newState)
+        if (State != newState)
         {
             //Debug.Log($"Changing state from {State} to {newState}");
-            if(State != null)
+            if (State != null)
                 State.Exit(this);
             State = newState;
             State.Enter(this);
@@ -155,7 +174,7 @@ public class HexCell
 
     public void OnSelect()
     {
-        
+
         ChangeState(State.OnSelect());
     }
 

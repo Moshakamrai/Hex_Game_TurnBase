@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b6b9d203d31094cb45651c663b761a, type: 3}
   m_Name: Ice
   m_EditorClassIdentifier: 
-  ID: 5
+  <ID>k__BackingField: 3
   <Name>k__BackingField: Ice
   <Description>k__BackingField: Icy caps of the mountins
   <Colour>k__BackingField: {r: 0.79886085, g: 0.85991997, b: 0.9056604, a: 1}
   <Prefab>k__BackingField: {fileID: 7047173637550029904, guid: e340a61c4976f1646bef811b681bc0c9,
     type: 3}
   <Icon>k__BackingField: {fileID: 0}
+  <Material>k__BackingField: {fileID: 0}
+  possibleAction: 0
+  finishedAction: 0
