@@ -49,7 +49,7 @@ public class SelectedState : BaseCellState
                 }
                 else if (attacker.TerrainType.ID == 1 || attacker.TerrainType.ID == 5)
                 {
-                    attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction = true;
+                    
                     attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = false;
                     attacker.TerrainType.possibleAction = true;
                 }
@@ -73,7 +73,7 @@ public class SelectedState : BaseCellState
         {
             moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
         }
-        if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction && !cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk)
+        if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction )
         {
             if (cell.TerrainType.ID == 5)
             {

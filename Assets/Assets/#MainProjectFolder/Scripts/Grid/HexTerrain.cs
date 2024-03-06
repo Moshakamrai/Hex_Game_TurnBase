@@ -52,7 +52,7 @@ public class HexTerrain : MonoBehaviour
     {
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         gameObject.GetComponent<MeshRenderer>().material = InteractableMat;
-
+        canAction = true;
     }
 
     public void UnMesher()
