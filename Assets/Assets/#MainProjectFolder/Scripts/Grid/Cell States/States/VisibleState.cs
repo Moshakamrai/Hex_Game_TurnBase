@@ -15,7 +15,7 @@ public class VisibleState : BaseCellState
         if (cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
         {
             
-            cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction = true;
+            cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = true;
         }
     }
 

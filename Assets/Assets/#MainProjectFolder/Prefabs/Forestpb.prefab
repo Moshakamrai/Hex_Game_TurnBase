@@ -120,6 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeMatColor: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa, type: 2}
+  InteractableMat: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa, type: 2}
+  canAction: 0
+  canWalk: 0
 --- !u!1 &4507317468105410643
 GameObject:
   m_ObjectHideFlags: 0

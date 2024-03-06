@@ -416,4 +416,38 @@ public static class HexMetrics
         neighbours.Add(new Vector2(axialCoordinates.x - 1, axialCoordinates.y + 1));
         return neighbours;
     }
+
+    public static List<Vector2> GetPlayerAttackCoordinatesList(Vector2 axialCoordinates)
+    {
+        List<Vector2> attackHex = new List<Vector2>();
+        for (int i = 1; i <= 5; i++)
+        {
+            attackHex.Add(new Vector2(axialCoordinates.x + i, axialCoordinates.y));
+            attackHex.Add(new Vector2(axialCoordinates.x, axialCoordinates.y + i));
+            attackHex.Add(new Vector2(axialCoordinates.x - i, axialCoordinates.y));
+            attackHex.Add(new Vector2(axialCoordinates.x, axialCoordinates.y - i));
+        }
+        
+        float conditionCordinates = axialCoordinates.x + axialCoordinates.y;
+        for (float i = 0; i <= 5; i++)
+        {
+            float newValue1 = (axialCoordinates.x + i) + (axialCoordinates.y - i);
+            float newValue2 = (axialCoordinates.x - i) + (axialCoordinates.y + i);
+            if (newValue1 == conditionCordinates || newValue2 == conditionCordinates )
+            {
+                attackHex.Add(new Vector2(axialCoordinates.x + i , axialCoordinates.y - i));
+               // Debug.LogError(" RIGHT this is condition coordinat : (" + conditionCordinates + ") and this is added coordinate ("+ newValue1 );
+                attackHex.Add(new Vector2(axialCoordinates.x - i, axialCoordinates.y + i));
+                //Debug.LogError(" RIGHT this is condition coordinat : (" + conditionCordinates + ") and this is added coordinate (" + newValue1);
+            }
+            
+            else
+            {
+               // Debug.LogError("this is condition coordinat : (" + conditionCordinates + ") and this is added coordinate (" + newValue1 + "|| " + newValue2 );
+            }
+           
+        }
+
+        return attackHex;
+    }
 }

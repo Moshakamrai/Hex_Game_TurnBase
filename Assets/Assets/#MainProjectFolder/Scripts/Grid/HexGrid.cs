@@ -114,11 +114,13 @@ public class HexGrid : MonoBehaviour
         foreach (HexCell cell in cells)
         {
             List<HexCell> neighbours = new List<HexCell>();
+            List<HexCell> attackCELLS = new List<HexCell>();
             // Get the axial coordinates of the current cell
             Vector2 currentAxialCoordinates = cell.AxialCoordinates;
 
             // Get the neighbor directions for the current cell
             List<Vector2> neighborCoordinates = HexMetrics.GetNeighbourCoordinatesList(currentAxialCoordinates);
+            List<Vector2> attackCordinates = HexMetrics.GetPlayerAttackCoordinatesList(currentAxialCoordinates);
             int neighborsFound = 0;
             foreach (Vector2 neighbourCoordiate in neighborCoordinates)
             {
@@ -132,8 +134,22 @@ public class HexGrid : MonoBehaviour
                     neighborsFound++;
                 }
             }
+            int attackHexesFound = 0;
+            foreach (Vector2 attackCoordiate in attackCordinates)
+            {
+                // Find the neighbor cell based on the direction
+                HexCell attacker = cells.Find(c => c.AxialCoordinates == attackCoordiate);
+
+                // If the neighbor exists, add it to the Neighbours list
+                if (attacker != null)
+                {
+                    attackCELLS.Add(attacker);
+                    attackHexesFound++;
+                }
+            }
+            cell.SetAttackHexes(attackCELLS);
             cell.SetNeighbours(neighbours);
-            Debug.Log($"Cell {cell.AxialCoordinates} has {neighborsFound} neighbours found");
+            //Debug.Log($"Cell {cell.AxialCoordinates} has {neighborsFound} neighbours found");
         }
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [Serializable]
@@ -15,7 +16,8 @@ public class HexCell
     [field: SerializeField] public Vector3 CubeCoordinates { get; private set; }
     [field: SerializeField] public Vector2 AxialCoordinates { get; private set; }
     [field: NonSerialized] public List<HexCell> Neighbours { get; private set; }
-
+    [field: NonSerialized] public List<HexCell> _AttackCells { get; private set; }
+    public static HexCell playerPosCell;
     [SerializeField]
     private CellState cellState;
     private ICellState state;
@@ -44,11 +46,13 @@ public class HexCell
     }
     public IEnumerator MoveCameraToCell(HexCell cell)
     {
+        playerPosCell = cell;
+
+        PlayerStateScript.Instance.WalkAnimationTrigger();
         Transform cameraTarget = CameraController.Instance.CameraTarget.transform;
         Vector3 start = cameraTarget.position;
         Vector3 end = cell.Terrain.transform.position;
         float duration = 1.0f; // Adjust the duration as needed
-
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -56,10 +60,12 @@ public class HexCell
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        cameraTarget.position = end; // Ensure the final position is accurate
         
+        cameraTarget.position = end; // Ensure the final position is accurate
         PlayerStateScript.Instance.IdleAnimationTrigger();
+        Vector2 playerPos = new Vector2(PlayerStateScript.Instance.gameObject.transform.position.x , PlayerStateScript.Instance.gameObject.transform.position.z) ;
+      
+       
     }
 
     public void SetCoordinates(Vector2 offsetCoordinates, HexOrientation orientation)
@@ -69,6 +75,7 @@ public class HexCell
         CubeCoordinates = HexMetrics.OffsetToCube(offsetCoordinates, orientation);
         AxialCoordinates = HexMetrics.CubeToAxial(CubeCoordinates);
     }
+    
 
     public void SetTerrainType(TerrainType terrainType)
     {
@@ -131,6 +138,11 @@ public class HexCell
     public void SetNeighbours(List<HexCell> neighbours)
     {
         Neighbours = neighbours;
+    }
+
+    public void SetAttackHexes(List<HexCell> attackCells)
+    {
+        _AttackCells = attackCells;
     }
 
     public void ClearTerrain()

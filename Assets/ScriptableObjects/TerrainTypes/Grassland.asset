@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grassland
   m_EditorClassIdentifier: 
   <ID>k__BackingField: 0
-  <Name>k__BackingField: Grassland
+  <Name>k__BackingField: EnemySpawner
   <Description>k__BackingField: This is a grassy area. Farms would do well here.
   <Colour>k__BackingField: {r: 0.28475437, g: 0.745283, b: 0.310114, a: 1}
   <Prefab>k__BackingField: {fileID: 103715765444416207, guid: cf2ad060e672c064b8a59ccf8d9d0d2f,

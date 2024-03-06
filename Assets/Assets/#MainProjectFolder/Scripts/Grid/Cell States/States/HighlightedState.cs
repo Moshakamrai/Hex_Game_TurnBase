@@ -33,10 +33,17 @@ public class HighlightedState : BaseCellState
         if (SelectedState.storedHexcel != null )
         {
             SelectedState.storedHexcel.SetNeighbours(SelectedState.storedHexcel.Neighbours);
+            SelectedState.storedHexcel.SetAttackHexes(SelectedState.storedHexcel._AttackCells);
             foreach (HexCell neighbour in SelectedState.storedHexcel.Neighbours)
             {
 
                 neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+               
+            }
+            foreach (HexCell attacker in SelectedState.storedHexcel._AttackCells)
+            {
+               
+                attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
             }
         }
 

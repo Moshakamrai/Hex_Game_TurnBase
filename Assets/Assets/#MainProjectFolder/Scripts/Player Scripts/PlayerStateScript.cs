@@ -95,6 +95,7 @@ public class PlayerStateScript : MonoBehaviour
     public void ShootAnimationTrigger()
     {
         playerAnim.SetTrigger("Shooting");
+        Debug.LogError("Should be firing");
     }
 
     public void StabAnimationTrigger()

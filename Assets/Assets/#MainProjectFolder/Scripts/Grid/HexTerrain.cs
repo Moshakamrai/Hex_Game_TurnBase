@@ -10,8 +10,10 @@ public class HexTerrain : MonoBehaviour
     public event Action OnMouseEnterAction;
     public event Action OnMouseExitAction;
     [SerializeField] private Material activeMatColor;
+    [SerializeField] private Material InteractableMat;
     private Collider parentCollider;
     public bool canAction;
+    public bool canWalk;
 
     private void Start()
     {
@@ -46,11 +48,20 @@ public class HexTerrain : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().material = activeMatColor;
         
     }
+    public void MesherEnemy()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponent<MeshRenderer>().material = InteractableMat;
+
+    }
 
     public void UnMesher()
     {
         gameObject.GetComponent<MeshRenderer>().enabled = false;
-       // Debug.LogError("UNMESHER");
+        
+        // Debug.LogError("UNMESHER");
         //canMove = false;
     }
+
+   
 }

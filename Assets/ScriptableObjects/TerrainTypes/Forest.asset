@@ -21,5 +21,5 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 0}
   <Material>k__BackingField: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa,
     type: 2}
-  possibleAction: 0
+  possibleAction: 1
   finishedAction: 0
