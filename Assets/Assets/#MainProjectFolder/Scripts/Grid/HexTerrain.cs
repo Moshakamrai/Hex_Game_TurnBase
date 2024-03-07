@@ -58,10 +58,17 @@ public class HexTerrain : MonoBehaviour
     public void UnMesher()
     {
         gameObject.GetComponent<MeshRenderer>().enabled = false;
-        
+        gameObject.GetComponent<MeshRenderer>().material = null;
         // Debug.LogError("UNMESHER");
         //canMove = false;
     }
 
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.LogError("Enemy is here");
+        }
+    }
+
 }

@@ -42,8 +42,9 @@ public class HexCell
             ChangeState(new VisibleState());
         else
             ChangeState(initalState);
-
+        
     }
+
     public IEnumerator MoveCameraToCell(HexCell cell)
     {
         playerPosCell = cell;

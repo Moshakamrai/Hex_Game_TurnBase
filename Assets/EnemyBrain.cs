@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
 {
+    [SerializeField] private bool turnState;
+   
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Tile"))

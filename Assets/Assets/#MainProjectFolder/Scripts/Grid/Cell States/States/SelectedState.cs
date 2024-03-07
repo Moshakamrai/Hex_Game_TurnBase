@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SelectedState : BaseCellState
@@ -14,8 +15,17 @@ public class SelectedState : BaseCellState
         CameraController.Instance.onFocusAction += cell.OnFocus;
         CameraController.Instance.IsLocked = true;
         storedHexcel = cell;
+        if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction)
+        {
+            Debug.LogError("Can Action is true for this cell " + cell.AxialCoordinates);
+            if (cell.TerrainType.ID == 5 || cell.TerrainType.ID == 1)
+            {
+                PlayerStateScript.Instance.isShooting = true;
+                Debug.LogError("shoould shoot");
+                PlayerStateScript.Instance.ShootAnimationTrigger();
+            }
+        }
 
-     
         if (moveCameraCoroutine != null)
         {
             CameraController.Instance.StopCoroutine(moveCameraCoroutine);
@@ -29,9 +39,18 @@ public class SelectedState : BaseCellState
                 neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().Mesher();
                 if (neighbour.TerrainType.ID == 0)
                 {
-                    neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction = true;
                     neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = true;
                     neighbour.TerrainType.possibleAction = true;
+                }
+                if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1)
+                {
+                    if (neighbour != null)
+                    {
+                        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().MesherEnemy();
+                        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = false;
+                        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction = false;
+                        neighbour.TerrainType.possibleAction = true;
+                    }
                 }
             }
             
@@ -42,48 +61,36 @@ public class SelectedState : BaseCellState
         {
             if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1)
             {
-
                 if (attacker != null)
                 {
                     attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().MesherEnemy();
                 }
-                else if (attacker.TerrainType.ID == 1 || attacker.TerrainType.ID == 5)
+                attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = false;
+                attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction = false;
+                attacker.TerrainType.possibleAction = true;
+                if (attacker.TerrainType.ID == 5)
                 {
-                    
-                    attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = false;
-                    attacker.TerrainType.possibleAction = true;
-                }
-                else
-                {
-                    return;
-                }
+                    break;
+                }         
             }
             else if (cell.TerrainType.ID == 0)
             {
                 attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().Mesher();
-            }
-            else
-            {
-                return;
-            }
-
-
+            }   
         }
+
         if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk)
         {
-            moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
-        }
-        if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction )
-        {
-            if (cell.TerrainType.ID == 5)
+            if ( cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
             {
-                PlayerStateScript.Instance.ShootAnimationTrigger();
+                moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
             }
-            
+            else if (cell.AxialCoordinates != HexCell.playerPosCell.AxialCoordinates)
+            {
+                moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
+            }
         }
         
-
-
     }
 
     public override void Exit(HexCell cell)
