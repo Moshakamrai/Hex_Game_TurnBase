@@ -120,8 +120,9 @@ public class SelectedState : BaseCellState
 
     public override ICellState OnDeselect()
     {
-
-        return new OnActiveState();
+        
+        return new VisibleState();
+        
     }
 
     public override ICellState OnFocus()

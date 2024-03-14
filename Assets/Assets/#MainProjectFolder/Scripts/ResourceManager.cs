@@ -12,6 +12,14 @@ public class ResourceManager : Singleton<ResourceManager>
 
     private void Start()
     {
+        
+        StartCoroutine(SetEnemyObjects());
+        PlayerStateScript.Instance.playerTurn = true;
+    }
+
+    IEnumerator SetEnemyObjects()
+    {
+        yield return new WaitForSeconds(1.2f);
         GameObject[] foundObjects = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject obj in foundObjects)
         {
@@ -22,8 +30,6 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             enemyObjects[tokenCount].GetComponent<EnemyBrain>().turnToken = 1;
         }
-
-        PlayerStateScript.Instance.playerTurn = true;
     }
 
     public void GiveToken()
