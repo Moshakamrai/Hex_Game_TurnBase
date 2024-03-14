@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,11 @@ public class PlayerStateScript : MonoBehaviour
     [SerializeField] private Animator playerAnim;
     [SerializeField] private GameObject playerContainer;
     public bool isShooting;
-    [SerializeField] private float additionalRotation;
+    public bool playerTurn;
     //public bool playerRotation;
     public static PlayerStateScript Instance
     {
+        
         get
         {
             if (instance == null)
@@ -46,7 +48,7 @@ public class PlayerStateScript : MonoBehaviour
     }
     private void Start()
     {
-        additionalRotation = 100f;
+        playerTurn = true;
     }
     void Update()
     {
@@ -88,21 +90,13 @@ public class PlayerStateScript : MonoBehaviour
         transform.rotation = rotation;
     }
 
-    //void RotateWhileShooting(Vector3 targetPosition)
-    //{
-    //    Vector3 direction = targetPosition - transform.position;
-    //    direction.y = 0f; // Ensure the rotation is in the horizontal plane
-    //    Quaternion rotation = Quaternion.LookRotation(direction);
-
-    //    if (isShooting)
-    //    {
-    //        // Add additional rotation on the Y-axis
-    //        Debug.LogError("SHOULD BE ROTATIING");
-    //        rotation *= Quaternion.Euler(0f, additionalRotation, 0f);
-    //    }
-
-    //    transform.rotation = rotation;
-    //}
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Tile"))
+        {
+            Debug.LogError("Player is here");
+        }
+    }
 
     public void IdleAnimationTrigger()
     {
@@ -126,28 +120,4 @@ public class PlayerStateScript : MonoBehaviour
         playerAnim.SetTrigger("Stabbing");
     }
 
-    //IEnumerator RotateObjectOverTime(float targetAngle, float duration)
-    //{
-    //    float initialAngle = playerContainer.transform.eulerAngles.y;
-    //    float elapsed = 0f;
-
-    //    while (elapsed < duration)
-    //    {
-    //        float currentAngle = Mathf.Lerp(initialAngle, targetAngle, elapsed / duration);
-    //        playerContainer.transform.eulerAngles = new Vector3(0f, currentAngle, 0f);
-
-    //        elapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-
-    //    // Ensure that the rotation is exactly at the target angle
-    //    playerContainer.transform.eulerAngles = new Vector3(0f, targetAngle, 0f);
-
-    //    // Wait for 1 second
-    //    yield return new WaitForSeconds(1f);
-
-    //    // Reset the rotation back to its original state
-    //    StartCoroutine(RotateObjectOverTime(initialAngle, 1f));
-    //    isShooting = false;
-    //}
 }

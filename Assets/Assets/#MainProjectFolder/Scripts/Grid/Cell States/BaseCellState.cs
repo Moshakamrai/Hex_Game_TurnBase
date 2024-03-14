@@ -6,6 +6,8 @@ public abstract class BaseCellState : ICellState
 
     public abstract void Exit(HexCell cell);
 
+    public abstract void Update(HexCell cell);
+
     public virtual ICellState OnDeselect()
     {
         return this;
@@ -34,4 +36,6 @@ public abstract class BaseCellState : ICellState
     {
         return this;
     }
+
+    
 }

@@ -17,6 +17,8 @@ public class HexCell
     [field: SerializeField] public Vector2 AxialCoordinates { get; private set; }
     [field: NonSerialized] public List<HexCell> Neighbours { get; private set; }
     [field: NonSerialized] public List<HexCell> _AttackCells { get; private set; }
+
+    [field: NonSerialized] public List<HexCell> _EnemyAttackCells { get; private set; }
     public static HexCell playerPosCell;
     [SerializeField]
     private CellState cellState;
@@ -53,21 +55,54 @@ public class HexCell
         Transform cameraTarget = CameraController.Instance.CameraTarget.transform;
         Vector3 start = cameraTarget.position;
         Vector3 end = cell.Terrain.transform.position;
+
+        // Adjust the end position to move up by 5 units in the Y axis
+        end.y += 15f;
+
         float duration = 1.0f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
+            end.y -= 0.025f;
             cameraTarget.position = Vector3.Lerp(start, end, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
+            
         }
-        
+        end.y -= 10f; 
+
         cameraTarget.position = end; // Ensure the final position is accurate
         PlayerStateScript.Instance.IdleAnimationTrigger();
-        Vector2 playerPos = new Vector2(PlayerStateScript.Instance.gameObject.transform.position.x , PlayerStateScript.Instance.gameObject.transform.position.z) ;
-      
-       
+        ResourceManager.Instance.GiveToken();
+
     }
+
+    public IEnumerator MoveToCell(Transform targetObject, HexCell cell)
+    {
+        Debug.LogError("EnemyMoved start");
+        Vector3 start = targetObject.position;
+        Vector3 end = cell.Terrain.transform.position;
+        float duration = 1.0f; // Adjust the duration as needed
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            targetObject.position = Vector3.Lerp(start, end, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        Debug.LogError("EnemyMoved");
+        targetObject.position = end;
+        targetObject.transform.SetParent(cell.terrain.gameObject.transform);
+        //OnActiveState.storedEnemyCell.SetNeighbours(OnActiveState.storedEnemyCell.Neighbours);
+        //foreach (HexCell neighbour in OnActiveState.storedEnemyCell.Neighbours)
+        //{
+        //    neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+        //}
+        cell.OnActive();
+
+    }
+
+
 
     public void SetCoordinates(Vector2 offsetCoordinates, HexOrientation orientation)
     {
@@ -132,9 +167,14 @@ public class HexCell
         HexTerrain hexTerrrain = terrain.GetComponentInChildren<HexTerrain>();
         hexTerrrain.OnMouseEnterAction += OnMouseEnter;
         hexTerrrain.OnMouseExitAction += OnMouseExit;
+        hexTerrrain.onTriggerEnemy += OnActive;
         terrain.gameObject.SetActive(false);
     }
-
+    //void Update()
+    //{
+    //    HexTerrain hexTerrrain = terrain.GetComponentInChildren<HexTerrain>();
+    //    hexTerrrain.onTriggerEnemy += OnActive;
+    //}
 
     public void SetNeighbours(List<HexCell> neighbours)
     {
@@ -145,7 +185,10 @@ public class HexCell
     {
         _AttackCells = attackCells;
     }
-
+    public void EnemySetAttackHexes(List<HexCell> EnemyAttackCells)
+    {
+        _EnemyAttackCells = EnemyAttackCells;
+    }
     public void ClearTerrain()
     {
         if (terrain != null)
@@ -153,6 +196,7 @@ public class HexCell
             HexTerrain hexTerrrain = terrain.GetComponent<HexTerrain>();
             hexTerrrain.OnMouseEnterAction -= OnMouseEnter;
             hexTerrrain.OnMouseExitAction -= OnMouseExit;
+
             UnityEngine.Object.Destroy(terrain.gameObject);
         }
     }

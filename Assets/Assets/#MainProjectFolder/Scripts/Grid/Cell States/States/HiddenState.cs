@@ -9,7 +9,7 @@ public class HiddenState : BaseCellState
         Debug.Log("Entering Hidden State");
         if(cell.Terrain == null)
         {
-            Debug.LogWarning("Terrain is null");
+            
             return;
         }
         cell.Terrain.gameObject.SetActive(false);
@@ -19,9 +19,14 @@ public class HiddenState : BaseCellState
     {
         if(cell.Terrain == null)
         {
-            Debug.LogWarning("Terrain is null");
+            
             return;
         }
         cell.Terrain.gameObject.SetActive(true);
+    }
+
+    public override void Update(HexCell cell)
+    {
+
     }
 }

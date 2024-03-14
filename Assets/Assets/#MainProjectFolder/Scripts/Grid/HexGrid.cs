@@ -153,6 +153,51 @@ public class HexGrid : MonoBehaviour
         }
     }
 
+    public void SetNeighboursEnemy(List<HexCell> cells)
+    {
+
+        foreach (HexCell cell in cells)
+        {
+            List<HexCell> neighbours = new List<HexCell>();
+            List<HexCell> attackCELLS = new List<HexCell>();
+            // Get the axial coordinates of the current cell
+            Vector2 currentAxialCoordinates = cell.AxialCoordinates;
+
+            // Get the neighbor directions for the current cell
+            List<Vector2> neighborCoordinates = HexMetrics.GetNeighbourCoordinatesList(currentAxialCoordinates);
+            List<Vector2> attackCordinates = HexMetrics.GetEnemyAttackCoordinatesList(currentAxialCoordinates);
+            int neighborsFound = 0;
+            foreach (Vector2 neighbourCoordiate in neighborCoordinates)
+            {
+                // Find the neighbor cell based on the direction
+                HexCell neighbor = cells.Find(c => c.AxialCoordinates == neighbourCoordiate);
+
+                // If the neighbor exists, add it to the Neighbours list
+                if (neighbor != null)
+                {
+                    neighbours.Add(neighbor);
+                    neighborsFound++;
+                }
+            }
+            int attackHexesFound = 0;
+            foreach (Vector2 attackCoordiate in attackCordinates)
+            {
+                // Find the neighbor cell based on the direction
+                HexCell attacker = cells.Find(c => c.AxialCoordinates == attackCoordiate);
+
+                // If the neighbor exists, add it to the Neighbours list
+                if (attacker != null)
+                {
+                    attackCELLS.Add(attacker);
+                    attackHexesFound++;
+                }
+            }
+            cell.EnemySetAttackHexes(attackCELLS);
+            cell.SetNeighbours(neighbours);
+            //Debug.Log($"Cell {cell.AxialCoordinates} has {neighborsFound} neighbours found");
+        }
+    }
+
     //Handled by coroutine and currently the most expensive operation
     private IEnumerator InstantiateCells(List<HexCell> hexCells)
     {
@@ -188,26 +233,26 @@ public class HexGrid : MonoBehaviour
 
     Color[] colors = new Color[] { Color.red, Color.blue, Color.green, Color.yellow, Color.magenta, Color.cyan };
 
-    private void OnDrawGizmos()
-    {
-        for (int z = 0; z < Height; z++)
-        {
-            for (int x = 0; x < Width; x++)
-            {
-                Vector3 centrePosition = HexMetrics.Center(HexSize, x, z, Orientation) + transform.position;
-                for (int s = 0; s < HexMetrics.Corners(HexSize, Orientation).Length; s++)
-                {
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawLine(
-                        centrePosition + HexMetrics.Corners(HexSize, Orientation)[s % 6], 
-                        centrePosition + HexMetrics.Corners(HexSize, Orientation)[(s + 1) % 6]
-                        );
-                    Gizmos.color = colors[s % 6];
-                    Gizmos.DrawSphere(centrePosition + HexMetrics.Corners(HexSize, Orientation)[s % 6], HexSize * 0.1f);
-                }
-            }
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    for (int z = 0; z < Height; z++)
+    //    {
+    //        for (int x = 0; x < Width; x++)
+    //        {
+    //            Vector3 centrePosition = HexMetrics.Center(HexSize, x, z, Orientation) + transform.position;
+    //            for (int s = 0; s < HexMetrics.Corners(HexSize, Orientation).Length; s++)
+    //            {
+    //                Gizmos.color = Color.white;
+    //                Gizmos.DrawLine(
+    //                    centrePosition + HexMetrics.Corners(HexSize, Orientation)[s % 6], 
+    //                    centrePosition + HexMetrics.Corners(HexSize, Orientation)[(s + 1) % 6]
+    //                    );
+    //                Gizmos.color = colors[s % 6];
+    //                Gizmos.DrawSphere(centrePosition + HexMetrics.Corners(HexSize, Orientation)[s % 6], HexSize * 0.1f);
+    //            }
+    //        }
+    //    }
+    //}
 
 }
 

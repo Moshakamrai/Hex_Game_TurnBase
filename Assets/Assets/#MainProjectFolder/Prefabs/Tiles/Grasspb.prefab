@@ -218,9 +218,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeMatColor: {fileID: 2100000, guid: 94a0d55eac9d2c946951a4b65e675408, type: 2}
-  InteractableMat: {fileID: 2100000, guid: f69fe334389ef194ebd1fc1dc388be8f, type: 2}
+  InteractableMat: {fileID: 2100000, guid: 6ca2e549af58ad149ae0b06d7a5ad9da, type: 2}
+  enemyPOVMat: {fileID: 2100000, guid: 93b31a06cb60aff4198b438a1aa4d3d3, type: 2}
   canAction: 0
   canWalk: 0
+  canMoveEnemy: 0
+  enemyExist: 0
 --- !u!1001 &3853419269385865671
 PrefabInstance:
   m_ObjectHideFlags: 0
