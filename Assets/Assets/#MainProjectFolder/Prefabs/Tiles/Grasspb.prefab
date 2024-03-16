@@ -224,6 +224,9 @@ MonoBehaviour:
   canWalk: 0
   canMoveEnemy: 0
   enemyExist: 0
+  playerExist: 0
+  currentEnemyObject: {fileID: 0}
+  currentPlayerObject: {fileID: 0}
 --- !u!1001 &3853419269385865671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,6 +298,11 @@ PrefabInstance:
     - target: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847249955866017041, guid: f39a75cee852b4a489a581917952cebd,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

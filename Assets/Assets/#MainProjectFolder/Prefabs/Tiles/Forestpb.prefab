@@ -127,7 +127,6 @@ MonoBehaviour:
   canMoveEnemy: 0
   enemyExist: 0
   playerExist: 0
-  cellToken: 0
   currentEnemyObject: {fileID: 0}
   currentPlayerObject: {fileID: 0}
 --- !u!1 &4507317468105410643
@@ -250,6 +249,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 7044104418529826671, guid: 9c268961a99322c47acaef4833ec79d3,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7654959797212051434, guid: 9c268961a99322c47acaef4833ec79d3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -273,7 +277,7 @@ PrefabInstance:
     - target: {fileID: 7654959797212051434, guid: 9c268961a99322c47acaef4833ec79d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.678
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654959797212051434, guid: 9c268961a99322c47acaef4833ec79d3,
         type: 3}

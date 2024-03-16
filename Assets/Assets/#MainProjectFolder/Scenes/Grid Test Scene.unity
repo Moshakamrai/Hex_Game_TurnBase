@@ -3149,10 +3149,10 @@ MonoBehaviour:
   - Height: 0.46
     TerrainType: {fileID: 11400000, guid: ea61aa3eb36d42e4bb8c5a3ad8c5cdb7, type: 2}
     Probability: 0.2
-  - Height: 0.6
+  - Height: 0.5
     TerrainType: {fileID: 11400000, guid: d65310cd317b68446954ad6f3cb9f24c, type: 2}
     Probability: 0.6
-  - Height: 0.7
+  - Height: 0.55
     TerrainType: {fileID: 11400000, guid: d65310cd317b68446954ad6f3cb9f24c, type: 2}
     Probability: 1
 --- !u!114 &1657913340
