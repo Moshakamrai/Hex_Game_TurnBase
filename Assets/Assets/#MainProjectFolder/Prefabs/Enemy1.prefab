@@ -1514,12 +1514,12 @@ Transform:
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3352309827719215893}
   - {fileID: 1741278012036770059}
   - {fileID: 1077608202176805322}
   - {fileID: 497842603539860776}
   - {fileID: 3219428466577331111}
   - {fileID: 4479139058938593434}
-  - {fileID: 3352309827719215893}
   - {fileID: 9002592723618802329}
   - {fileID: 8927929883838696385}
   m_Father: {fileID: 0}
@@ -1608,6 +1608,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnState: 0
+  enemyAnim: {fileID: 0}
+  tileState: {fileID: 0}
+  death: 0
+  turnToken: 0
 --- !u!1 &7663480784100975200
 GameObject:
   m_ObjectHideFlags: 0

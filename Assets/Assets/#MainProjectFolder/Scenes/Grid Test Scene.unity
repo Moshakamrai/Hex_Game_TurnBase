@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 332535536}
   m_Layer: 0
   m_Name: PLayerContainer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -845,6 +845,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea61aa3eb36d42e4bb8c5a3ad8c5cdb7, type: 2}
   - {fileID: 11400000, guid: 32ce5c31b37d8bc47bb3973f4962c215, type: 2}
   - {fileID: 11400000, guid: e473066373e3b0a46b7a03b59609e252, type: 2}
+  tokenCount: 0
+  enemyObjects: []
+  enemyState: {fileID: 0}
 --- !u!4 &507525405
 Transform:
   m_ObjectHideFlags: 0
@@ -2238,7 +2241,7 @@ MonoBehaviour:
     m_ActionId: 4570f338-324f-4776-9e92-49f91f0c8ac6
     m_ActionName: World/Deselect[/Keyboard/backspace,/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard and Mouse
+  m_DefaultControlScheme: 
   m_DefaultActionMap: World
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -3054,10 +3057,10 @@ MonoBehaviour:
   Biomes:
   - Height: 0.43
     TerrainType: {fileID: 11400000, guid: 32ce5c31b37d8bc47bb3973f4962c215, type: 2}
-    Probability: 0.2
+    Probability: 0.1
   - Height: 0.46
     TerrainType: {fileID: 11400000, guid: ea61aa3eb36d42e4bb8c5a3ad8c5cdb7, type: 2}
-    Probability: 0.3
+    Probability: 0.2
   - Height: 0.6
     TerrainType: {fileID: 11400000, guid: d65310cd317b68446954ad6f3cb9f24c, type: 2}
     Probability: 0.6
@@ -3666,6 +3669,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Mr Wick (Mapped) (Trimmed) (Mixamo Rigged) '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5b28e2ae873121c4d8d1e450f57c8c52,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2559285840627121667, guid: 5b28e2ae873121c4d8d1e450f57c8c52,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -3978,6 +3986,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1788865166}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b28e2ae873121c4d8d1e450f57c8c52,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1788865169}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b28e2ae873121c4d8d1e450f57c8c52,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1788865168}
   m_SourcePrefab: {fileID: 100100000, guid: 5b28e2ae873121c4d8d1e450f57c8c52, type: 3}
 --- !u!4 &1788865164 stripped
 Transform:
@@ -4000,7 +4016,57 @@ MonoBehaviour:
   playerAnim: {fileID: 0}
   playerContainer: {fileID: 0}
   isShooting: 0
-  additionalRotation: 0
+  playerTurn: 0
+--- !u!136 &1788865168
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179552805}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.005
+  m_Height: 0.04
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.015, z: 0}
+--- !u!54 &1788865169
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179552805}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2038570060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,6 +4336,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 781854454406986071, guid: 60fc2c221f90444458e85861526e72cd,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7121772977545239425, guid: 60fc2c221f90444458e85861526e72cd,
         type: 3}
       propertyPath: m_LocalPosition.x

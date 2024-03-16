@@ -38,16 +38,21 @@ public class HighlightedState : BaseCellState
             {
 
                 neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
-               
+
             }
             foreach (HexCell attacker in SelectedState.storedHexcel._AttackCells)
             {
-               
+
                 attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
             }
         }
 
         
         return new SelectedState();
+    }
+
+    public override void Update(HexCell cell)
+    {
+
     }
 }

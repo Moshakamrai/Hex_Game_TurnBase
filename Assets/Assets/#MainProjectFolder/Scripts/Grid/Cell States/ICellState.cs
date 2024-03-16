@@ -4,7 +4,9 @@ public interface ICellState
 
     void Enter(HexCell cell);
     void Exit(HexCell cell);
-    
+
+    void Update(HexCell cell);
+
     //Possible transition triggers
     ICellState OnMouseEnter();
     ICellState OnMouseExit();

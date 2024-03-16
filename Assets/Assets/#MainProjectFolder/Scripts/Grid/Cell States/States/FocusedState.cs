@@ -22,6 +22,11 @@ public class FocusedState : BaseCellState
         CameraController.Instance.IsLocked = false;
     }
 
+    public override void Update(HexCell cell)
+    {
+
+    }
+
     public override ICellState OnDeselect()
     {
         return new SelectedState();

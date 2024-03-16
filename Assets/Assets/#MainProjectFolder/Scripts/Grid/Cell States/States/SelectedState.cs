@@ -11,11 +11,12 @@ public class SelectedState : BaseCellState
     public override void Enter(HexCell cell)
     {
        // Debug.LogError($"Cell {cell.AxialCoordinates} is entering Selected State");
+        HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         CameraController.Instance.onDeselectAction += cell.OnDeselect;
         CameraController.Instance.onFocusAction += cell.OnFocus;
         CameraController.Instance.IsLocked = true;
         storedHexcel = cell;
-        if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction)
+        if (currentCell.enemyExist)
         {
             Debug.LogError("Can Action is true for this cell " + cell.AxialCoordinates);
             if (cell.TerrainType.ID == 5 || cell.TerrainType.ID == 1)
@@ -31,24 +32,30 @@ public class SelectedState : BaseCellState
             CameraController.Instance.StopCoroutine(moveCameraCoroutine);
         }
         
-        if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk )
+        if (currentCell.canWalk)
         {
             cell.SetNeighbours(cell.Neighbours);
             foreach (HexCell neighbour in cell.Neighbours)
             {
-                neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().Mesher();
+                HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                neighboredCell.Mesher();
                 if (neighbour.TerrainType.ID == 0)
                 {
-                    neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = true;
+                    neighboredCell.canWalk = true;
                     neighbour.TerrainType.possibleAction = true;
                 }
                 if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1)
                 {
-                    if (neighbour != null)
+                    if (neighbour != null && neighboredCell.enemyExist)
                     {
-                        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().MesherEnemy();
-                        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = false;
-                        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction = false;
+                        neighboredCell.MesherEnemy();
+                        neighboredCell.canWalk = false;     
+                        neighbour.TerrainType.possibleAction = true;
+                    }
+                    else if (neighbour != null && !neighboredCell.enemyExist)
+                    {
+                        neighboredCell.Mesher();
+                        neighboredCell.canWalk = true;
                         neighbour.TerrainType.possibleAction = true;
                     }
                 }
@@ -56,30 +63,33 @@ public class SelectedState : BaseCellState
             
         }
         cell.SetAttackHexes(cell._AttackCells);
-
         foreach (HexCell attacker in cell._AttackCells)
         {
+            HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
             if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1)
             {
-                if (attacker != null)
+                if (attacker != null && attackCell.enemyExist)
                 {
-                    attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().MesherEnemy();
+                    attackCell.MesherEnemy();
+                    attackCell.canWalk = false;
                 }
-                attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = false;
-                attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canAction = false;
-                attacker.TerrainType.possibleAction = true;
-                if (attacker.TerrainType.ID == 5)
+                else if (attacker != null && !attackCell.enemyExist)
+                {
+                    attackCell.Mesher();
+                    attackCell.canWalk = true;
+                }
+                if (attacker.TerrainType.ID == 5 && attackCell.enemyExist)
                 {
                     break;
                 }         
             }
             else if (cell.TerrainType.ID == 0)
             {
-                attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().Mesher();
+                attackCell.Mesher();
             }   
         }
-
-        if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk)
+        //&& PlayerStateScript.Instance.playerTurn
+        if (currentCell.canWalk )
         {
             if ( cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
             {
@@ -103,6 +113,7 @@ public class SelectedState : BaseCellState
         // Stop the coroutine if the cell exits the selected state
         if (moveCameraCoroutine != null)
             CameraController.Instance.StopCoroutine(moveCameraCoroutine);
+
     }
 
     
@@ -111,10 +122,16 @@ public class SelectedState : BaseCellState
     {
         
         return new VisibleState();
+        
     }
 
     public override ICellState OnFocus()
     {
         return new FocusedState();
+    }
+
+    public override void Update(HexCell cell)
+    {
+
     }
 }

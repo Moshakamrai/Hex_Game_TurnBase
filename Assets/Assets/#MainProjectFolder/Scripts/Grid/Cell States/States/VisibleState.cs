@@ -14,9 +14,10 @@ public class VisibleState : BaseCellState
 
         if (cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
         {
-            
+   
             cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = true;
         }
+        
     }
 
     public override void Exit(HexCell cell)
@@ -24,10 +25,18 @@ public class VisibleState : BaseCellState
         //Debug.LogError($"Cell {cell.AxialCoordinates} is exiting Visible State");
     }
 
-    
+    public override ICellState OnActive()
+    {
+        return new OnActiveState();
+    }
 
     public override ICellState OnMouseEnter()
     {
         return new HighlightedState();
+    }
+
+    public override void Update(HexCell cell)
+    {
+
     }
 }
