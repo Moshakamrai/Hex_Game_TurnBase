@@ -35,7 +35,7 @@ public class OnActiveState :BaseCellState
                     if (enemyObject.turnToken == 1 && enemyObject != null)
                     {
                         //enemyObject.gameObject.transform.position = neighboredCell.gameObject.transform.position;
-                        
+                        enemyObject.turnToken = 0;
                         enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
                         Debug.LogError("Should MOve Enemy t0 " + cell.AxialCoordinates);
                         //currentCell.cellToken = 0;
@@ -55,7 +55,10 @@ public class OnActiveState :BaseCellState
                         neighboredCell.canWalk = false;               
                     }
                 }
+                //ResourceManager.Instance.GiveToken(enemyObject.gameObject);
             }
+
+
             //cell.EnemySetAttackHexes(cell._AttackCells);
         }
         

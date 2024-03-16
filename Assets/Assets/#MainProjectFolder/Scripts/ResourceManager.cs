@@ -25,31 +25,27 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             enemyObjects.Add(obj);
         }
-
-        if (enemyObjects.Count > 0)
-        {
-            enemyObjects[tokenCount].GetComponent<EnemyBrain>().turnToken = 1;
-        }
+        GiveToken();
+        
     }
 
     public void GiveToken()
     {
+        
         PlayerStateScript.Instance.playerTurn = false;
 
-        if (enemyObjects[tokenCount] != null)
+        for(int i = 0; i <= enemyObjects.Count; i++)
         {
-            enemyObjects[tokenCount].GetComponent<EnemyBrain>().turnToken = 1;
+            if (enemyObjects[i] != null)
+            {
+                Debug.LogError("giving tokens" + i);
+                enemyObjects[i].GetComponent<EnemyBrain>().turnToken = 1;
+            }
+            
         }
-
-        enemyState.turnToken--;
-        tokenCount++;
-
-        if (tokenCount >= enemyObjects.Count)
-        {
-            tokenCount = 0;
-            PlayersTurn();
-        }
+        
     }
+    
 
     public void PlayersTurn()
     {

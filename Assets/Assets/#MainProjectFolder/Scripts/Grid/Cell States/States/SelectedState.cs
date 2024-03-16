@@ -66,7 +66,7 @@ public class SelectedState : BaseCellState
         foreach (HexCell attacker in cell._AttackCells)
         {
             HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-            if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1)
+            if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
             {
                 if (attacker != null && attackCell.enemyExist)
                 {
@@ -76,17 +76,14 @@ public class SelectedState : BaseCellState
                 else if (attacker != null && !attackCell.enemyExist)
                 {
                     attackCell.Mesher();
-                    attackCell.canWalk = true;
+                   
                 }
                 if (attacker.TerrainType.ID == 5 && attackCell.enemyExist)
                 {
                     break;
                 }         
             }
-            else if (cell.TerrainType.ID == 0)
-            {
-                attackCell.Mesher();
-            }   
+             
         }
         //&& PlayerStateScript.Instance.playerTurn
         if (currentCell.canWalk )
@@ -116,8 +113,7 @@ public class SelectedState : BaseCellState
 
     }
 
-    
-
+   
     public override ICellState OnDeselect()
     {
         
