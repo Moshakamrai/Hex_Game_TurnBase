@@ -220,14 +220,20 @@ public class HexGrid : MonoBehaviour
     }
 
     private void SetVisibleCells()
+    {  
+        foreach (HexCell cell in cells)
+        {
+            cell.ChangeState(new VisibleState());
+        }
+    }
+    public void SetActiveCells()
     {
-        
-            foreach (HexCell cell in cells)
-            {
-                cell.ChangeState(new VisibleState());
-            }
-
-
+        Debug.LogError("all cells activated");
+        foreach (HexCell cell in cells)
+        {
+            
+            cell.ChangeState(new OnActiveState());
+        }
     }
 
 

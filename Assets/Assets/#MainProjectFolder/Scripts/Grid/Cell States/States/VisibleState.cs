@@ -25,10 +25,10 @@ public class VisibleState : BaseCellState
         //Debug.LogError($"Cell {cell.AxialCoordinates} is exiting Visible State");
     }
 
-    public override ICellState OnActive()
-    {
-        return new OnActiveState();
-    }
+    //public override ICellState OnActive()
+    //{
+    //    return new OnActiveState();
+    //}
 
     public override ICellState OnMouseEnter()
     {

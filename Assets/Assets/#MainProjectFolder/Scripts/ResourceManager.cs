@@ -9,6 +9,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     [SerializeField] private List<GameObject> enemyObjects = new List<GameObject>();
     [SerializeField] EnemyBrain enemyState;
+    [SerializeField] private HexGrid allCells;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     public void GiveToken()
     {
-        
+        allCells.SetActiveCells();
         PlayerStateScript.Instance.playerTurn = false;
 
         for(int i = 0; i <= enemyObjects.Count; i++)
