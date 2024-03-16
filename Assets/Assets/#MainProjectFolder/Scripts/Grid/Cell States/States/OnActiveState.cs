@@ -15,14 +15,14 @@ public class OnActiveState :BaseCellState
         Debug.LogError("Active ceel " + cell);
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         EnemyBrain enemyObject = cell.Terrain.gameObject.GetComponentInChildren<EnemyBrain>();
-        if (storedEnemyCell != null)
-        {
-            storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
-            foreach (HexCell neighbour in storedEnemyCell.Neighbours)
-            {
-                neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
-            }
-        }
+        //if (storedEnemyCell != null)
+        //{
+        //    storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
+        //    foreach (HexCell neighbour in storedEnemyCell.Neighbours)
+        //    {
+        //        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+        //    }
+        //}
         if (currentCell.enemyExist)
         {
             cell.SetNeighbours(cell.Neighbours);
