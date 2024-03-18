@@ -184,11 +184,11 @@ public class CameraController : Singleton<CameraController>
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(cameraTarget.transform.position + Vector3.up*3, 3f);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(cameraTarget.transform.position + Vector3.up*3, 3f);
+    //}
 }
 
 public enum CameraMode

@@ -59,12 +59,30 @@ public class OnActiveState :BaseCellState
             }
 
 
-            //cell.EnemySetAttackHexes(cell._AttackCells);
+            
         }
-        
-        else
+        cell.EnemySetAttackHexes(cell._AttackCells);
+        foreach (HexCell attacker in cell._AttackCells)
         {
-            Debug.LogError("NOT TRUE BRO");
+            HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+            if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
+            {
+                if (attacker != null && attackCell.playerExist)
+                {
+                    attackCell.MesherEnemy();
+                    attackCell.canMoveEnemy = false;
+                }
+                else if (attacker != null && !attackCell.enemyExist)
+                {
+                    attackCell.EnemyViewMesher();
+
+                }
+                if (attacker.TerrainType.ID == 5 && attackCell.enemyExist)
+                {
+                    break;
+                }
+            }
+
         }
         storedEnemyCell = cell;
     }
