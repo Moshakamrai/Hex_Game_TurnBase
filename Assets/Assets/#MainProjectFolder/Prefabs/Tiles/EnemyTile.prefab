@@ -221,6 +221,7 @@ MonoBehaviour:
   activeMatColor: {fileID: 2100000, guid: 94a0d55eac9d2c946951a4b65e675408, type: 2}
   InteractableMat: {fileID: 2100000, guid: 6ca2e549af58ad149ae0b06d7a5ad9da, type: 2}
   enemyPOVMat: {fileID: 2100000, guid: 93b31a06cb60aff4198b438a1aa4d3d3, type: 2}
+  possibleKill: 0
   canAction: 0
   canWalk: 0
   canMoveEnemy: 0
@@ -778,17 +779,17 @@ PrefabInstance:
     - target: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2800
+      value: 3131.4
       objectReference: {fileID: 0}
     - target: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2800
+      value: 3131.4
       objectReference: {fileID: 0}
     - target: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2800
+      value: 3131.4
       objectReference: {fileID: 0}
     - target: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
         type: 3}

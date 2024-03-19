@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 924836787}
-  m_IndirectSpecularColor: {r: 0.1808202, g: 0.22635283, b: 0.30719823, a: 1}
+  m_IndirectSpecularColor: {r: 0.18081976, g: 0.22635217, b: 0.30719703, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -619,7 +619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &145205695
 Transform:
   m_ObjectHideFlags: 0
@@ -1799,7 +1799,7 @@ PrefabInstance:
     - target: {fileID: 1166323066742286520, guid: 2b91690c69c50754fbab0b11fae84a82,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 180.07
+      value: 185.1
       objectReference: {fileID: 0}
     - target: {fileID: 1166323066742286520, guid: 2b91690c69c50754fbab0b11fae84a82,
         type: 3}
@@ -1809,7 +1809,7 @@ PrefabInstance:
     - target: {fileID: 1166323066742286520, guid: 2b91690c69c50754fbab0b11fae84a82,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -268.57602
+      value: -282.6
       objectReference: {fileID: 0}
     - target: {fileID: 1166323066742286520, guid: 2b91690c69c50754fbab0b11fae84a82,
         type: 3}
@@ -2420,7 +2420,7 @@ MonoBehaviour:
   tokenCount: 0
   enemyObjects: []
   enemyState: {fileID: 0}
-  allCells: {fileID: 0}
+  allCells: {fileID: 1657913340}
 --- !u!4 &507525405
 Transform:
   m_ObjectHideFlags: 0
@@ -4513,7 +4513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1133076148
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6886,7 +6886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1523185186
 Transform:
   m_ObjectHideFlags: 0
@@ -7880,7 +7880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1657913338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7927,11 +7927,17 @@ MonoBehaviour:
     Probability: 0.1
   - Height: 0.46
     TerrainType: {fileID: 11400000, guid: ea61aa3eb36d42e4bb8c5a3ad8c5cdb7, type: 2}
-    Probability: 0.2
+    Probability: 0.18
   - Height: 0.6
     TerrainType: {fileID: 11400000, guid: d65310cd317b68446954ad6f3cb9f24c, type: 2}
+    Probability: 0.4
+  - Height: 0.64
+    TerrainType: {fileID: 11400000, guid: 9d0f61d3770d5874c8a8b4f372f3edc5, type: 2}
     Probability: 0.6
-  - Height: 0.7
+  - Height: 0.66
+    TerrainType: {fileID: 11400000, guid: 6e4aefb9d05167548ba2370c12f8d7dc, type: 2}
+    Probability: 0.7
+  - Height: 0.68
     TerrainType: {fileID: 11400000, guid: d65310cd317b68446954ad6f3cb9f24c, type: 2}
     Probability: 1
 --- !u!114 &1657913340
@@ -7947,7 +7953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Orientation>k__BackingField: 0
-  <Width>k__BackingField: 6
+  <Width>k__BackingField: 7
   <Height>k__BackingField: 6
   <HexSize>k__BackingField: 30
   <BatchSize>k__BackingField: 50

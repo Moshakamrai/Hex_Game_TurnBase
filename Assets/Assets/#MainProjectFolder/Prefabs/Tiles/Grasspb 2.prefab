@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7509006136412093160}
   - component: {fileID: 5231401531551861986}
   m_Layer: 0
-  m_Name: Grasspb
+  m_Name: Grasspb 2
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,6 +228,95 @@ MonoBehaviour:
   playerExist: 0
   currentEnemyObject: {fileID: 0}
   currentPlayerObject: {fileID: 0}
+--- !u!1001 &2599710837216327475
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6914866292403457977}
+    m_Modifications:
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00159
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7364514
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6764904
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 85.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3737887839908295757, guid: d807f7a5ab5cba84ea1d191a54800523,
+        type: 3}
+      propertyPath: m_Name
+      value: aloe_m
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d807f7a5ab5cba84ea1d191a54800523, type: 3}
+--- !u!4 &565899042772706203 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2580137169237595304, guid: d807f7a5ab5cba84ea1d191a54800523,
+    type: 3}
+  m_PrefabInstance: {fileID: 2599710837216327475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3853419269385865671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,7 +402,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 565899042772706203}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f39a75cee852b4a489a581917952cebd, type: 3}
 --- !u!4 &6914866292403457977 stripped

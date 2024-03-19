@@ -83,7 +83,8 @@ public class SelectedState : BaseCellState
                     break;
                 }         
             }
-             
+            
+
         }
         //&& PlayerStateScript.Instance.playerTurn
         if (currentCell.canWalk )

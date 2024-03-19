@@ -15,7 +15,7 @@ public class OnActiveState :BaseCellState
         //Debug.LogError("Active ceel " + cell);
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         EnemyBrain enemyObject = cell.Terrain.gameObject.GetComponentInChildren<EnemyBrain>();
-        
+        storedEnemyCell = cell;
         if (currentCell.enemyExist)
         {
             cell.SetNeighbours(cell.Neighbours);
@@ -32,7 +32,7 @@ public class OnActiveState :BaseCellState
                             enemyObject.turnToken = 0;
                             enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
                             Debug.LogError("Should MOve Enemy t0 " + neighbour.AxialCoordinates);
-                            storedEnemyCell = cell;
+                            
                             //currentCell.cellToken = 0;
 
                         }

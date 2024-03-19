@@ -75,7 +75,6 @@ public class HexCell
         
         PlayerStateScript.Instance.IdleAnimationTrigger();
         ResourceManager.Instance.GiveToken();
-
     }
 
     public IEnumerator MoveToCell(Transform targetObject, HexCell cell)
@@ -110,6 +109,7 @@ public class HexCell
         //{
         //    neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
         //}
+
     }
 
 

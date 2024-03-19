@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7509006136412093160}
   - component: {fileID: 5231401531551861986}
   m_Layer: 0
-  m_Name: Grasspb
+  m_Name: Grasspb 3
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

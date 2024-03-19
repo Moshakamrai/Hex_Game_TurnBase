@@ -43,7 +43,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4048278570296033585}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -122,6 +122,7 @@ MonoBehaviour:
   activeMatColor: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa, type: 2}
   InteractableMat: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa, type: 2}
   enemyPOVMat: {fileID: 2100000, guid: db7045733bc3e734f90478ad0cf90ffa, type: 2}
+  possibleKill: 0
   canAction: 0
   canWalk: 0
   canMoveEnemy: 0
@@ -277,7 +278,7 @@ PrefabInstance:
     - target: {fileID: 7654959797212051434, guid: 9c268961a99322c47acaef4833ec79d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7654959797212051434, guid: 9c268961a99322c47acaef4833ec79d3,
         type: 3}
@@ -318,6 +319,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181496229174520832, guid: 9c268961a99322c47acaef4833ec79d3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 210.4201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181496229174520832, guid: 9c268961a99322c47acaef4833ec79d3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 210.4201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181496229174520832, guid: 9c268961a99322c47acaef4833ec79d3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 210.4201
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
