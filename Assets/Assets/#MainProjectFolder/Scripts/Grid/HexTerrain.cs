@@ -16,6 +16,7 @@ public class HexTerrain : MonoBehaviour
     [SerializeField] private Material InteractableMat;
     [SerializeField] private Material enemyPOVMat;
     private Collider parentCollider;
+    public bool possibleKill;
     public bool canAction;
     public bool canWalk;
     public bool canMoveEnemy;
@@ -43,9 +44,13 @@ public class HexTerrain : MonoBehaviour
     }
     private void Update()
     {
-       if (enemyExist)
+       //if (enemyExist)
+       //{
+       //     onTriggerEnemy?.Invoke();
+       //}
+       if (enemyExist && playerExist)
        {
-            onTriggerEnemy?.Invoke();
+            Destroy(currentEnemyObject);
        }
         
     }
@@ -65,18 +70,24 @@ public class HexTerrain : MonoBehaviour
     {
         thisMesh.enabled = true;
         thisMesh.material = activeMatColor;
-        
+        possibleKill = false;
     }
     public void EnemyViewMesher()
     {
         thisMesh.enabled = true;
         thisMesh.material = enemyPOVMat;
     }
+    public void EnemyKillPlayerMesher()
+    {
+        thisMesh.enabled = true;
+        thisMesh.material = InteractableMat;
+    }
     public void MesherEnemy()
     {
         thisMesh.enabled = true;
         thisMesh.material = InteractableMat;
         canAction = true;
+        possibleKill = true;
     }
 
     public void UnMesher()
@@ -84,6 +95,7 @@ public class HexTerrain : MonoBehaviour
         thisMesh.enabled = false;
         thisMesh.material = null;
         canAction = false;
+        possibleKill = false;
         // Debug.LogError("UNMESHER");
     }
 
@@ -101,7 +113,6 @@ public class HexTerrain : MonoBehaviour
         {
             currentEnemyObject = collision.gameObject;
             //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
-            canAction = true;
             enemyExist = true;
         }
         if (collision.gameObject.CompareTag("Barrel"))
@@ -143,6 +154,8 @@ public class HexTerrain : MonoBehaviour
             //cellToken = 0 ;
             currentEnemyObject = null;
             enemyExist = false;
+            canAction = false;
+            
         }
         if (collision.gameObject.CompareTag("Player"))
         {

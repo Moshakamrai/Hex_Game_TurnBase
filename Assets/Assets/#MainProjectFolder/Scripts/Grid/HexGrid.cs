@@ -228,7 +228,7 @@ public class HexGrid : MonoBehaviour
     }
     public void SetActiveCells()
     {
-        Debug.LogError("all cells activated");
+       
         foreach (HexCell cell in cells)
         {
             

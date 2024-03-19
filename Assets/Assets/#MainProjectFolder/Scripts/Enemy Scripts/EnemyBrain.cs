@@ -18,7 +18,7 @@ public class EnemyBrain : MonoBehaviour
     private void Start()
     {
        
-        turnToken = 1;
+        //turnToken = 1;
         enemyAnim = GetComponent<Animator>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
     }
@@ -43,10 +43,11 @@ public class EnemyBrain : MonoBehaviour
         // This method will be called when the object is clicked or tapped
         // Add your desired functionality here
         Debug.Log("Mouse click or tap detected on " + gameObject.name);
-        if (tileState.canAction == true)
+        if (tileState.canAction == true && tileState.possibleKill == true)
         {
             TriggerDeathAnimation();
             tileState.canAction = false;
+            tileState.possibleKill = false;
         }
         
     }

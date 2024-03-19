@@ -72,6 +72,7 @@ public class HexCell
         end.y -= 10f; 
 
         cameraTarget.position = end; // Ensure the final position is accurate
+        
         PlayerStateScript.Instance.IdleAnimationTrigger();
         ResourceManager.Instance.GiveToken();
 
@@ -82,25 +83,35 @@ public class HexCell
         Debug.LogError("EnemyMoved start");
         Vector3 start = targetObject.position;
         Vector3 end = cell.Terrain.transform.position;
+
+        // Adjust the end position to move up by 5 units in the Y axis
+        end.y += 5f;
+
         float duration = 1.0f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
+            end.y -= 0.025f;
             targetObject.position = Vector3.Lerp(start, end, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
         }
+        end.y -= 5f; // Lower the end position back down
+
         Debug.LogError("EnemyMoved");
         targetObject.position = end;
-        targetObject.transform.SetParent(cell.terrain.gameObject.transform);
+        targetObject.transform.SetParent(cell.Terrain.gameObject.transform);
+        ResourceManager.Instance.PlayersTurn();
+
+        Debug.LogError("after enemy Moved it should call active function now");
+        Grid.SetActiveCells();
         //OnActiveState.storedEnemyCell.SetNeighbours(OnActiveState.storedEnemyCell.Neighbours);
         //foreach (HexCell neighbour in OnActiveState.storedEnemyCell.Neighbours)
         //{
         //    neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
         //}
-        cell.OnActive();
-
     }
+
 
 
 

@@ -39,7 +39,7 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             if (enemyObjects[i] != null)
             {
-                Debug.LogError("giving tokens" + i);
+                //Debug.LogError("giving tokens" + i);
                 enemyObjects[i].GetComponent<EnemyBrain>().turnToken = 1;
             }
             
