@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1445357314201644322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4241924610412764852}
+  m_Layer: 0
+  m_Name: Sci-Tile (With Wall)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4241924610412764852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445357314201644322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 193, y: 10.2, z: 98.27896}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7999793810242794123}
+  - {fileID: 4518585494587005462}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3256707589399388037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4241924610412764852}
+    m_Modifications:
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.19999981
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.6789627
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295402984575580084, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+        type: 3}
+      propertyPath: m_Name
+      value: Sci-Fi Tile (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c626bd7647a59534c8f393d1cd2fbb5d, type: 3}
+--- !u!4 &7999793810242794123 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4771243133622807822, guid: c626bd7647a59534c8f393d1cd2fbb5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3256707589399388037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4241766332276876768
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4241924610412764852}
+    m_Modifications:
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 340.07602
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 340.07605
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 340.07602
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9889895
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000037333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.14798601
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000005586318
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 17.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090756478026130764, guid: 6ec5589a78243814c8a07ceab47b05b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Sci FI Wall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ec5589a78243814c8a07ceab47b05b7, type: 3}
+--- !u!4 &4518585494587005462 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 317773773686472694, guid: 6ec5589a78243814c8a07ceab47b05b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4241766332276876768}
+  m_PrefabAsset: {fileID: 0}
