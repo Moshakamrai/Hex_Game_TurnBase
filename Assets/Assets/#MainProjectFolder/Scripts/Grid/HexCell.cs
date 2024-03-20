@@ -74,7 +74,10 @@ public class HexCell
         cameraTarget.position = end; // Ensure the final position is accurate
         
         PlayerStateScript.Instance.IdleAnimationTrigger();
+        
         ResourceManager.Instance.GiveToken();
+        
+        
     }
 
     public IEnumerator MoveToCell(Transform targetObject, HexCell cell)
@@ -103,7 +106,9 @@ public class HexCell
         ResourceManager.Instance.PlayersTurn();
 
         Debug.LogError("after enemy Moved it should call active function now");
-        Grid.SetActiveCells();
+
+        
+        //Grid.SetActiveCells();
         //OnActiveState.storedEnemyCell.SetNeighbours(OnActiveState.storedEnemyCell.Neighbours);
         //foreach (HexCell neighbour in OnActiveState.storedEnemyCell.Neighbours)
         //{

@@ -16,10 +16,20 @@ public class OnActiveState :BaseCellState
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         EnemyBrain enemyObject = cell.Terrain.gameObject.GetComponentInChildren<EnemyBrain>();
         storedEnemyCell = cell;
+        
         if (currentCell.enemyExist)
         {
+            if (storedEnemyCell != null)
+            {
+                storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
+                foreach (HexCell neighbour in storedEnemyCell.Neighbours)
+                {
+                    Debug.LogError("after enemy Moved it should Unmesh now");
+                    neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+                }
+            }
             cell.SetNeighbours(cell.Neighbours);
-            if (PlayerStateScript.Instance.playerTurn == false) 
+            //if (PlayerStateScript.Instance.playerTurn == false) 
             {
                 foreach (HexCell neighbour in cell.Neighbours)
                 {
@@ -55,28 +65,28 @@ public class OnActiveState :BaseCellState
                 }
                 
             }
-            else if (PlayerStateScript.Instance.playerTurn == true)
-            {
-                if (storedEnemyCell != null)
-                {
-                    storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
-                    foreach (HexCell neighbour in storedEnemyCell.Neighbours)
-                    {
-                        Debug.LogError("after enemy Moved it should Unmesh now");
-                        neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
-                    }
-                }
-                foreach (HexCell neighbour in cell.Neighbours)
-                {
-                    Debug.LogError("after enemy Moved it should mesh now");
-                    HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                    if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist)
-                    {
-                        neighboredCell.canMoveEnemy = true;
-                        neighboredCell.EnemyViewMesher();
-                    }
-                }
-            }
+            //else if (PlayerStateScript.Instance.playerTurn == true)
+            //{
+            //    if (storedEnemyCell != null)
+            //    {
+            //        storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
+            //        foreach (HexCell neighbour in storedEnemyCell.Neighbours)
+            //        {
+            //            Debug.LogError("after enemy Moved it should Unmesh now");
+            //            neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+            //        }
+            //    }
+            //    foreach (HexCell neighbour in cell.Neighbours)
+            //    {
+            //        Debug.LogError("after enemy Moved it should mesh now");
+            //        HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+            //        if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist)
+            //        {
+            //            neighboredCell.canMoveEnemy = true;
+            //            neighboredCell.EnemyViewMesher();
+            //        }
+            //    }
+            //}
         }
         //cell.EnemySetAttackHexes(cell._AttackCells);
         //foreach (HexCell attacker in cell._AttackCells)

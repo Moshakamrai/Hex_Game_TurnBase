@@ -39,9 +39,15 @@ public class SelectedState : BaseCellState
             {
                 HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
                 neighboredCell.Mesher();
-                if (neighbour.TerrainType.ID == 0)
-                {
+                if (neighbour.TerrainType.ID == 0 && neighboredCell.enemyExist != true)
+                { 
                     neighboredCell.canWalk = true;
+                    neighbour.TerrainType.possibleAction = true;
+                }
+                else
+                {
+                    neighboredCell.MesherEnemy();
+                    neighboredCell.canWalk = false;
                     neighbour.TerrainType.possibleAction = true;
                 }
                 if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1)
