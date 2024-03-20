@@ -25,6 +25,7 @@ public class ResourceManager : Singleton<ResourceManager>
         foreach (GameObject obj in foundObjects)
         {
             enemyObjects.Add(obj);
+            obj.GetComponent<EnemyBrain>().turnToken = 1;
         }
         GiveToken();
         
