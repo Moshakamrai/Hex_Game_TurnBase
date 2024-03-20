@@ -50,9 +50,9 @@ public class HexCell
     public IEnumerator MoveCameraToCell(HexCell cell)
     {
         playerPosCell = cell;
-
+        Debug.LogError("Hello camera should move");
         PlayerStateScript.Instance.WalkAnimationTrigger();
-        Transform cameraTarget = CameraController.Instance.CameraTarget.transform;
+        Transform cameraTarget = PlayerStateScript.Instance.gameObject.transform;
         Vector3 start = cameraTarget.position;
         Vector3 end = cell.Terrain.transform.position;
 
@@ -82,7 +82,7 @@ public class HexCell
 
     public IEnumerator MoveToCell(Transform targetObject, HexCell cell)
     {
-        Debug.LogError("EnemyMoved start");
+        
         Vector3 start = targetObject.position;
         Vector3 end = cell.Terrain.transform.position;
 
@@ -100,14 +100,16 @@ public class HexCell
         }
         end.y -= 5f; // Lower the end position back down
 
-        Debug.LogError("EnemyMoved");
+     
         targetObject.position = end;
         targetObject.transform.SetParent(cell.Terrain.gameObject.transform);
         ResourceManager.Instance.PlayersTurn();
 
         Debug.LogError("after enemy Moved it should call active function now");
 
-        
+        Grid.SetSelectPlayerCell();
+
+
         //Grid.SetActiveCells();
         //OnActiveState.storedEnemyCell.SetNeighbours(OnActiveState.storedEnemyCell.Neighbours);
         //foreach (HexCell neighbour in OnActiveState.storedEnemyCell.Neighbours)

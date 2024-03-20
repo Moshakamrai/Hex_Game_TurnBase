@@ -11,6 +11,7 @@ public class PlayerStateScript : MonoBehaviour
     [SerializeField] private GameObject playerContainer;
     public bool isShooting;
     public bool playerTurn;
+    public bool firstTurn;
     //public bool playerRotation;
     public static PlayerStateScript Instance
     {
@@ -49,6 +50,7 @@ public class PlayerStateScript : MonoBehaviour
     private void Start()
     {
         playerTurn = true;
+        firstTurn = true;
     }
     void Update()
     {

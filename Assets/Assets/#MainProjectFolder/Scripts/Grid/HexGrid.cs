@@ -236,6 +236,19 @@ public class HexGrid : MonoBehaviour
         }
     }
 
+    public void SetSelectPlayerCell()
+    {
+
+        foreach (HexCell cell in cells)
+        {
+            if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().playerExist)
+            {
+                Debug.Log("Triggering Player");
+                cell.ChangeState(new SelectedState());
+            }
+        }
+    }
+
 
     Color[] colors = new Color[] { Color.red, Color.blue, Color.green, Color.yellow, Color.magenta, Color.cyan };
 

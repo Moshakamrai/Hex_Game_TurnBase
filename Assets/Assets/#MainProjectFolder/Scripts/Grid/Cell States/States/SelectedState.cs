@@ -10,12 +10,13 @@ public class SelectedState : BaseCellState
 
     public override void Enter(HexCell cell)
     {
-       // Debug.LogError($"Cell {cell.AxialCoordinates} is entering Selected State");
+        Debug.LogError($"Cell {cell.AxialCoordinates} is entering Selected State");
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         CameraController.Instance.onDeselectAction += cell.OnDeselect;
         CameraController.Instance.onFocusAction += cell.OnFocus;
         CameraController.Instance.IsLocked = true;
         storedHexcel = cell;
+        
         if (currentCell.enemyExist)
         {
             Debug.LogError("Can Action is true for this cell " + cell.AxialCoordinates);
@@ -97,11 +98,16 @@ public class SelectedState : BaseCellState
         {
             if ( cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
             {
+                Debug.LogError("Hello camera should move");
                 moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
+                currentCell.canWalk = false;
             }
-            else if (cell.AxialCoordinates != HexCell.playerPosCell.AxialCoordinates)
+            //cell.AxialCoordinates != HexCell.playerPosCell.AxialCoordinates &&
+            else if ( currentCell.playerExist != true)
             {
+                Debug.LogError("is here 2");
                 moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
+                
             }
         }
         

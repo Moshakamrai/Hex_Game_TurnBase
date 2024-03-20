@@ -24,7 +24,7 @@ public class OnActiveState :BaseCellState
                 storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
                 foreach (HexCell neighbour in storedEnemyCell.Neighbours)
                 {
-                    Debug.LogError("after enemy Moved it should Unmesh now");
+                    //Debug.LogError("after enemy Moved it should Unmesh now");
                     neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
                 }
             }
@@ -41,7 +41,7 @@ public class OnActiveState :BaseCellState
                             //enemyObject.gameObject.transform.position = neighboredCell.gameObject.transform.position;
                             enemyObject.turnToken = 0;
                             enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
-                            Debug.LogError("Should MOve Enemy t0 " + neighbour.AxialCoordinates);
+                            //Debug.LogError("Should MOve Enemy t0 " + neighbour.AxialCoordinates);
                             
                             //currentCell.cellToken = 0;
 

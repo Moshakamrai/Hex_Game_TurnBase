@@ -3,7 +3,7 @@ using UnityEngine;
 public class VisibleState : BaseCellState
 {
     public override CellState State => CellState.Visible;
-
+   
     public override void Enter(HexCell cell)
     {
         //Debug.LogError($"Cell {cell.AxialCoordinates} is entering Visible State");
@@ -12,12 +12,12 @@ public class VisibleState : BaseCellState
             cell.Terrain.gameObject.SetActive(true);
         }
 
-        if (cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
+        if (cell.AxialCoordinates == new Vector2(0.00f, 0.00f) && PlayerStateScript.Instance.firstTurn)
         {
-   
+            PlayerStateScript.Instance.firstTurn = false;
             cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().canWalk = true;
         }
-        
+
     }
 
     public override void Exit(HexCell cell)
