@@ -49,6 +49,7 @@ public class HexCell
 
     public IEnumerator MoveCameraToCell(HexCell cell)
     {
+        
         playerPosCell = cell;
         Debug.LogError("Hello camera should move");
         PlayerStateScript.Instance.WalkAnimationTrigger();
@@ -59,7 +60,7 @@ public class HexCell
         // Adjust the end position to move up by 5 units in the Y axis
         end.y += 15f;
 
-        float duration = 1.0f; // Adjust the duration as needed
+        float duration = 0.8f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -85,11 +86,11 @@ public class HexCell
         
         Vector3 start = targetObject.position;
         Vector3 end = cell.Terrain.transform.position;
-
+        cell.terrain.GetComponentInChildren<HexTerrain>().enemyExist = true;
         // Adjust the end position to move up by 5 units in the Y axis
         end.y += 5f;
 
-        float duration = 1.0f; // Adjust the duration as needed
+        float duration = 0.8f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -109,6 +110,7 @@ public class HexCell
 
         Grid.SetSelectPlayerCell();
 
+        //SelectedState.dontMove = false;
 
         //Grid.SetActiveCells();
         //OnActiveState.storedEnemyCell.SetNeighbours(OnActiveState.storedEnemyCell.Neighbours);

@@ -7,9 +7,10 @@ public class SelectedState : BaseCellState
     public override CellState State => CellState.Selected;
     public static HexCell storedHexcel;
     private Coroutine moveCameraCoroutine;
-
+    public static int moveCount;
     public override void Enter(HexCell cell)
     {
+        Debug.LogWarning(moveCount);
         Debug.LogError($"Cell {cell.AxialCoordinates} is entering Selected State");
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         CameraController.Instance.onDeselectAction += cell.OnDeselect;
@@ -45,7 +46,7 @@ public class SelectedState : BaseCellState
                     neighboredCell.canWalk = true;
                     neighbour.TerrainType.possibleAction = true;
                 }
-                else
+                else if (neighbour.TerrainType.ID == 0 && neighboredCell.enemyExist)
                 {
                     neighboredCell.MesherEnemy();
                     neighboredCell.canWalk = false;
@@ -66,8 +67,7 @@ public class SelectedState : BaseCellState
                         neighbour.TerrainType.possibleAction = true;
                     }
                 }
-            }
-            
+            }           
         }
         cell.SetAttackHexes(cell._AttackCells);
         foreach (HexCell attacker in cell._AttackCells)
@@ -94,23 +94,23 @@ public class SelectedState : BaseCellState
 
         }
         //&& PlayerStateScript.Instance.playerTurn
-        if (currentCell.canWalk )
+        if (currentCell.canWalk && moveCount % 2 == 0)
         {
             if ( cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
             {
                 Debug.LogError("Hello camera should move");
                 moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
-                currentCell.canWalk = false;
+                
             }
-            //cell.AxialCoordinates != HexCell.playerPosCell.AxialCoordinates &&
-            else if ( currentCell.playerExist != true)
+            //
+            else if (cell.AxialCoordinates != HexCell.playerPosCell.AxialCoordinates &&  currentCell.playerExist != true)
             {
                 Debug.LogError("is here 2");
                 moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
                 
             }
         }
-        
+        moveCount++;
     }
 
     public override void Exit(HexCell cell)

@@ -147,6 +147,14 @@ public class HexTerrain : MonoBehaviour
             playerExist = true;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            currentPlayerObject = null;
+            playerExist = false;
+        }
+    }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -157,13 +165,13 @@ public class HexTerrain : MonoBehaviour
             canAction = false;
             
         }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
-            currentPlayerObject = null;
-            playerExist = false;
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
+        //    currentPlayerObject = null;
+        //    playerExist = false;
             
-        }
+        //}
     }
 
 }

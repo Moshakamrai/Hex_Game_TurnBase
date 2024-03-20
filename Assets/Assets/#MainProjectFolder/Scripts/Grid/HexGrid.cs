@@ -243,8 +243,11 @@ public class HexGrid : MonoBehaviour
         {
             if (cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>().playerExist)
             {
+
                 Debug.Log("Triggering Player");
                 cell.ChangeState(new SelectedState());
+
+
             }
         }
     }

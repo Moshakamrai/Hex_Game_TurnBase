@@ -12,7 +12,7 @@ public class OnActiveState :BaseCellState
     public override void Enter(HexCell cell)
     {
        
-        //Debug.LogError("Active ceel " + cell);
+        Debug.LogWarning("Active ceel enemy " + cell);
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         EnemyBrain enemyObject = cell.Terrain.gameObject.GetComponentInChildren<EnemyBrain>();
         storedEnemyCell = cell;
@@ -25,6 +25,7 @@ public class OnActiveState :BaseCellState
                 foreach (HexCell neighbour in storedEnemyCell.Neighbours)
                 {
                     //Debug.LogError("after enemy Moved it should Unmesh now");
+
                     neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
                 }
             }
@@ -65,28 +66,7 @@ public class OnActiveState :BaseCellState
                 }
                 
             }
-            //else if (PlayerStateScript.Instance.playerTurn == true)
-            //{
-            //    if (storedEnemyCell != null)
-            //    {
-            //        storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
-            //        foreach (HexCell neighbour in storedEnemyCell.Neighbours)
-            //        {
-            //            Debug.LogError("after enemy Moved it should Unmesh now");
-            //            neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
-            //        }
-            //    }
-            //    foreach (HexCell neighbour in cell.Neighbours)
-            //    {
-            //        Debug.LogError("after enemy Moved it should mesh now");
-            //        HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-            //        if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist)
-            //        {
-            //            neighboredCell.canMoveEnemy = true;
-            //            neighboredCell.EnemyViewMesher();
-            //        }
-            //    }
-            //}
+            
         }
         //cell.EnemySetAttackHexes(cell._AttackCells);
         //foreach (HexCell attacker in cell._AttackCells)
