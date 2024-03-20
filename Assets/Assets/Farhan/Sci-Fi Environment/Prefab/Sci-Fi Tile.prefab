@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sci-Fi Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 1746654310787607633, guid: 3d6eb94a2a27858469dc226382ad6767,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 91e75424442135c45a39e6a8f6c25d6a, type: 2}
     - target: {fileID: 6944656104360116776, guid: 3d6eb94a2a27858469dc226382ad6767,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -88,6 +93,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 26fdfe5a59d746645b35d45d669a8a86, type: 2}
+    - target: {fileID: 7743480366618694112, guid: 3d6eb94a2a27858469dc226382ad6767,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5310942e92062ae449c19d2bb955d810, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
