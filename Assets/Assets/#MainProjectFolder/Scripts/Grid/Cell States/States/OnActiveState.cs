@@ -41,6 +41,7 @@ public class OnActiveState :BaseCellState
                         {
                             //enemyObject.gameObject.transform.position = neighboredCell.gameObject.transform.position;
                             enemyObject.turnToken = 0;
+                            currentCell.possibleKill = false;
                             enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
                             //Debug.LogError("Should MOve Enemy t0 " + neighbour.AxialCoordinates);
                             

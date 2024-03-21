@@ -73,11 +73,11 @@ public class HexCell
         end.y -= 10f; 
 
         cameraTarget.position = end; // Ensure the final position is accurate
-        
+        //SelectedState.moveCount++;
         PlayerStateScript.Instance.IdleAnimationTrigger();
         
         ResourceManager.Instance.GiveToken();
-        
+       // Grid.SetActiveCells();
         
     }
 
@@ -86,11 +86,11 @@ public class HexCell
         
         Vector3 start = targetObject.position;
         Vector3 end = cell.Terrain.transform.position;
-        cell.terrain.GetComponentInChildren<HexTerrain>().enemyExist = true;
+        cell.terrain.GetComponentInChildren<HexTerrain>().possibleKill = true;
         // Adjust the end position to move up by 5 units in the Y axis
         end.y += 5f;
 
-        float duration = 0.8f; // Adjust the duration as needed
+        float duration = 0.9f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -107,8 +107,12 @@ public class HexCell
         ResourceManager.Instance.PlayersTurn();
 
         Debug.LogError("after enemy Moved it should call active function now");
-
-        Grid.SetSelectPlayerCell();
+        if (ResourceManager.Instance.givenTurn == 0)
+        {
+            Debug.LogWarning("Players turn finally ");
+            Grid.SetSelectPlayerCell();
+        }
+        
 
         //SelectedState.dontMove = false;
 
