@@ -7,11 +7,11 @@ public class SelectedState : BaseCellState
     public override CellState State => CellState.Selected;
     public static HexCell storedHexcel;
     private Coroutine moveCameraCoroutine;
-    //public static int moveCount;
+    public static int moveCount;
     public override void Enter(HexCell cell)
     {
-        
-        Debug.LogWarning($"Cell {cell.AxialCoordinates} is entering Selected State");
+        Debug.LogWarning(moveCount);
+        Debug.LogError($"Cell {cell.AxialCoordinates} is entering Selected State");
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         CameraController.Instance.onDeselectAction += cell.OnDeselect;
         CameraController.Instance.onFocusAction += cell.OnFocus;
@@ -41,26 +41,26 @@ public class SelectedState : BaseCellState
             {
                 HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
                 neighboredCell.Mesher();
-                if (neighbour.TerrainType.ID == 0 && neighboredCell.possibleKill != true)
+                if (neighbour.TerrainType.ID == 0 && neighboredCell.enemyExist != true)
                 { 
                     neighboredCell.canWalk = true;
                     neighbour.TerrainType.possibleAction = true;
                 }
-                else if (neighbour.TerrainType.ID == 0 && neighboredCell.possibleKill)
+                else if (neighbour.TerrainType.ID == 0 && neighboredCell.enemyExist)
                 {
                     neighboredCell.MesherEnemy();
                     neighboredCell.canWalk = false;
-                    
+                    neighbour.TerrainType.possibleAction = true;
                 }
                 if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1)
                 {
-                    if (neighbour != null && neighboredCell.possibleKill)
+                    if (neighbour != null && neighboredCell.enemyExist)
                     {
                         neighboredCell.MesherEnemy();
                         neighboredCell.canWalk = false;     
                         neighbour.TerrainType.possibleAction = true;
                     }
-                    else if (neighbour != null && !neighboredCell.possibleKill)
+                    else if (neighbour != null && !neighboredCell.enemyExist)
                     {
                         neighboredCell.Mesher();
                         neighboredCell.canWalk = true;
@@ -75,31 +75,32 @@ public class SelectedState : BaseCellState
             HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
             if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
             {
-                if (attacker != null && attackCell.possibleKill)
+                if (attacker != null && attackCell.enemyExist)
                 {
                     attackCell.MesherEnemy();
                     attackCell.canWalk = false;
                 }
-                else if (attacker != null && !attackCell.possibleKill)
+                else if (attacker != null && !attackCell.enemyExist)
                 {
                     attackCell.Mesher();
                    
                 }
-                if (attackCell.possibleKill)
+                if (attacker.TerrainType.ID == 5 && attackCell.enemyExist)
                 {
                     break;
                 }         
             }
+            
+
         }
         //&& PlayerStateScript.Instance.playerTurn
-        //&& moveCount % 2 == 0
-        if (currentCell.canWalk )
+        if (currentCell.canWalk && moveCount % 2 == 0)
         {
             if ( cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
             {
                 Debug.LogError("Hello camera should move");
                 moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
-                currentCell.canWalk = false;
+                
             }
             //
             else if (cell.AxialCoordinates != HexCell.playerPosCell.AxialCoordinates &&  currentCell.playerExist != true)
@@ -109,7 +110,7 @@ public class SelectedState : BaseCellState
                 
             }
         }
-        //moveCount++;
+        moveCount++;
     }
 
     public override void Exit(HexCell cell)
@@ -127,8 +128,10 @@ public class SelectedState : BaseCellState
 
    
     public override ICellState OnDeselect()
-    {    
-        return new VisibleState();       
+    {
+        
+        return new VisibleState();
+        
     }
 
     public override ICellState OnFocus()
