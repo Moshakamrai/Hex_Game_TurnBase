@@ -28,6 +28,7 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             enemyCount++;
             enemyObjects.Add(obj);
+            obj.GetComponent<EnemyBrain>().turnToken = 1;
         }
         
         GiveToken();
