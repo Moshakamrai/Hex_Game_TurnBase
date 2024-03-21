@@ -45,7 +45,7 @@ public class EnemyBrain : MonoBehaviour
         Debug.Log("Mouse click or tap detected on " + gameObject.name);
         if (tileState.canAction == true && tileState.possibleKill == true)
         {
-            TriggerDeathAnimation();
+            PlayerStateScript.Instance.ShootAnimationTrigger(gameObject);
             tileState.canAction = false;
             tileState.possibleKill = false;
         }
@@ -71,6 +71,14 @@ public class EnemyBrain : MonoBehaviour
         enemyAnim.SetTrigger("Jumping");
     }
 
+    public void TriggerStabbingAnimation()
+    {
+        enemyAnim.SetTrigger("Slash");
+    }
+    public void TriggerPlayerDeath()
+    {
+        PlayerStateScript.Instance.DeathAnimationTrigger();
+    }
     public void TakeTurn()
     {
         turnToken--;

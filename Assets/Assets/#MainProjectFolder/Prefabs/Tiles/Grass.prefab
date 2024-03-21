@@ -3644,8 +3644,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeMatColor: {fileID: 0}
   InteractableMat: {fileID: 0}
+  enemyPOVMat: {fileID: 0}
+  possibleKill: 0
   canAction: 0
   canWalk: 0
+  canMoveEnemy: 0
+  enemyExist: 0
+  playerExist: 0
+  currentEnemyObject: {fileID: 0}
+  currentPlayerObject: {fileID: 0}
 --- !u!1001 &66552665782512045
 PrefabInstance:
   m_ObjectHideFlags: 0

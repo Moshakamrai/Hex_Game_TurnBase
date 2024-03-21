@@ -60,7 +60,7 @@ public class HexCell
         // Adjust the end position to move up by 5 units in the Y axis
         end.y += 15f;
 
-        float duration = 0.8f; // Adjust the duration as needed
+        float duration = 0.82f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -83,14 +83,14 @@ public class HexCell
 
     public IEnumerator MoveToCell(Transform targetObject, HexCell cell)
     {
-        
+        targetObject.transform.SetParent(cell.Terrain.gameObject.transform);
         Vector3 start = targetObject.position;
         Vector3 end = cell.Terrain.transform.position;
         cell.terrain.GetComponentInChildren<HexTerrain>().possibleKill = true;
         // Adjust the end position to move up by 5 units in the Y axis
         end.y += 5f;
 
-        float duration = 0.9f; // Adjust the duration as needed
+        float duration = 0.75f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -103,7 +103,7 @@ public class HexCell
 
      
         targetObject.position = end;
-        targetObject.transform.SetParent(cell.Terrain.gameObject.transform);
+        
         ResourceManager.Instance.PlayersTurn();
 
         Debug.LogError("after enemy Moved it should call active function now");

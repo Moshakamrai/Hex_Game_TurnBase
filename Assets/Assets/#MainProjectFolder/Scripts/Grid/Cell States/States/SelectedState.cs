@@ -25,7 +25,7 @@ public class SelectedState : BaseCellState
             {
                 PlayerStateScript.Instance.isShooting = true;
                 Debug.LogError("shoould shoot");
-                PlayerStateScript.Instance.ShootAnimationTrigger();
+               // PlayerStateScript.Instance.ShootAnimationTrigger();
             }
         }
 
@@ -52,10 +52,11 @@ public class SelectedState : BaseCellState
                     neighboredCell.canWalk = false;
                     
                 }
-                if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1)
+                if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1 && neighbour.TerrainType.ID == 0)
                 {
                     if (neighbour != null && neighboredCell.possibleKill)
                     {
+                        neighboredCell.canAction = true;
                         neighboredCell.MesherEnemy();
                         neighboredCell.canWalk = false;     
                         neighbour.TerrainType.possibleAction = true;
@@ -77,6 +78,7 @@ public class SelectedState : BaseCellState
             {
                 if (attacker != null && attackCell.possibleKill)
                 {
+                    attackCell.canAction = true;
                     attackCell.MesherEnemy();
                     attackCell.canWalk = false;
                 }

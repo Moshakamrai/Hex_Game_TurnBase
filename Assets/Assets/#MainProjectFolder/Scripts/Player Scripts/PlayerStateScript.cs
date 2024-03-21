@@ -12,6 +12,8 @@ public class PlayerStateScript : MonoBehaviour
     public bool isShooting;
     public bool playerTurn;
     public bool firstTurn;
+
+    public GameObject enemyTarget;
     //public bool playerRotation;
     public static PlayerStateScript Instance
     {
@@ -105,18 +107,27 @@ public class PlayerStateScript : MonoBehaviour
         
         playerAnim.SetTrigger("Idle");
     }
+    public void DeathAnimationTrigger()
+    {
 
+        playerAnim.SetTrigger("Death");
+    }
     public void WalkAnimationTrigger()
     {
         
         playerAnim.SetTrigger("Walking");
     }
 
-    public void ShootAnimationTrigger()
+    public void ShootAnimationTrigger(GameObject target)
     {
+        enemyTarget = target;
         playerAnim.SetTrigger("Shooting");  
     }
 
+    public void TriggerEnemyDeathAnimation()
+    {
+        enemyTarget.GetComponent<EnemyBrain>().TriggerDeathAnimation();
+    }
     public void StabAnimationTrigger()
     {  
         playerAnim.SetTrigger("Stabbing");

@@ -48,11 +48,14 @@ public class HexTerrain : MonoBehaviour
        //{
        //     onTriggerEnemy?.Invoke();
        //}
-       if (enemyExist && playerExist)
-       {
-            Destroy(currentEnemyObject);
-       }
-        
+       //if (enemyExist && playerExist)
+       //{
+       //     Destroy(currentEnemyObject);
+       //}
+        if (enemyExist && playerExist)
+        {
+            currentEnemyObject.GetComponent<EnemyBrain>().TriggerStabbingAnimation();
+        }
     }
     private void OnMouseEnter()
     {
@@ -70,7 +73,7 @@ public class HexTerrain : MonoBehaviour
     {
         thisMesh.enabled = true;
         thisMesh.material = activeMatColor;
-        possibleKill = false;
+        
     }
     public void EnemyViewMesher()
     {
@@ -94,8 +97,8 @@ public class HexTerrain : MonoBehaviour
     {
         thisMesh.enabled = false;
         thisMesh.material = null;
-        canAction = false;
-        possibleKill = false;
+        //canAction = false;
+        //possibleKill = false;
         // Debug.LogError("UNMESHER");
     }
 
@@ -112,8 +115,11 @@ public class HexTerrain : MonoBehaviour
         else if (collision.gameObject.CompareTag("Enemy") && !collision.gameObject.GetComponent<EnemyBrain>().death)
         {
             currentEnemyObject = collision.gameObject;
+            currentEnemyObject.transform.parent = transform.parent;
             //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
+            possibleKill = true;
             enemyExist = true;
+            canAction = true;
         }
         if (collision.gameObject.CompareTag("Barrel"))
         {
@@ -128,8 +134,9 @@ public class HexTerrain : MonoBehaviour
             //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
             //Debug.LogError("enemyexist");
             currentEnemyObject = collision.gameObject;
-            canAction = true;
+            
             enemyExist = true;       
+           // possibleKill= false;
             onTriggerEnemy?.Invoke();
         } 
         if (collision.gameObject.CompareTag("Barrel"))
@@ -159,19 +166,15 @@ public class HexTerrain : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            
             //cellToken = 0 ;
             currentEnemyObject = null;
             enemyExist = false;
-            canAction = false;
+            
+            possibleKill = false;
             
         }
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
-        //    currentPlayerObject = null;
-        //    playerExist = false;
-            
-        //}
+       
     }
 
 }

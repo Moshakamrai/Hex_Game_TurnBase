@@ -39,10 +39,16 @@ public class OnActiveState :BaseCellState
                     {
                         if (enemyObject.turnToken == 1 && enemyObject != null)
                         {
+                            Vector2 distanceToNeighbour = neighbour.AxialCoordinates - HexCell.playerPosCell.AxialCoordinates;
+                            Vector2 distanceToCell = cell.AxialCoordinates - HexCell.playerPosCell.AxialCoordinates;
+                            if(distanceToNeighbour.magnitude < distanceToCell.magnitude)
+                            {
+                                enemyObject.turnToken = 0;
+
+                                enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
+                            }
                             //enemyObject.gameObject.transform.position = neighboredCell.gameObject.transform.position;
-                            enemyObject.turnToken = 0;
-                            currentCell.possibleKill = false;
-                            enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
+                            
                             //Debug.LogError("Should MOve Enemy t0 " + neighbour.AxialCoordinates);
                             
                             //currentCell.cellToken = 0;
