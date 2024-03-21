@@ -7,8 +7,373 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Bant_zoloto
+    second: {fileID: 2100000, guid: 60e7475381ae21e4ab5c7e5115eb14bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_Grey.001
+    second: {fileID: 2100000, guid: 49e977cddf522c241818f24bacf58d9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_green
+    second: {fileID: 2100000, guid: 6ed2b22542f85184fbae8d7ef3e13cfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bukvi
+    second: {fileID: 2100000, guid: 60efef78fc0ee7f47ae10931736be819, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cherepica
+    second: {fileID: 2100000, guid: f03c64f4a2cd8fc46b2a900727ac85e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Conections
+    second: {fileID: 2100000, guid: 4642bed31c8876744b6027268d59ae38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Conections.001
+    second: {fileID: 2100000, guid: 73b234d75e381624fa81b3c6000831ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Connction.002
+    second: {fileID: 2100000, guid: 973d69415c146b644b53d3bcffbf7693, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DOm_dveri
+    second: {fileID: 2100000, guid: 012d2250231ff8246aa057cb96aedc5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dom_boka
+    second: {fileID: 2100000, guid: dbdbfc4dea4ac7340ae00326a48e87da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dom_centr
+    second: {fileID: 2100000, guid: 7896d7a473c59c144af0af3699b46f65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dom_oblic
+    second: {fileID: 2100000, guid: 9438834d85a5051448a6dd58c1146c3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fingers
+    second: {fileID: 2100000, guid: ca91008b0d06acc4896149cd20977be6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fingers.001
+    second: {fileID: 2100000, guid: b0a566b00626fba4d89804665ef21a9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glaza
+    second: {fileID: 2100000, guid: ac3d859b2c1b1eb47ad5557100356e92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey.001
+    second: {fileID: 2100000, guid: ff7ea20c97f15a848b7e7a6b0f6d533b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ice_2
+    second: {fileID: 2100000, guid: 05c45193e1660a549b2fdfaa904e28e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Jetpack_Red.001
+    second: {fileID: 2100000, guid: 588eb0492a7be1a4ea60e9e4e4a4a166, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Jetpack_Red_Darker.001
+    second: {fileID: 2100000, guid: ad3ff9199e5847a458a82ef0b1afb056, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_fire
+    second: {fileID: 2100000, guid: 18219f15c69c55447a3c4b429a67020e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_fire1
+    second: {fileID: 2100000, guid: c63ebda44e0bea3459751da6d0b8c749, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_fire_2
+    second: {fileID: 2100000, guid: 6edfd8ad3eed9ff4a8a01914f374a120, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_golub
+    second: {fileID: 2100000, guid: 63513a082709172449e011a1effb34e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_red
+    second: {fileID: 2100000, guid: c7c4cb611c79c754dbdf3187b3ff61a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_red_1
+    second: {fileID: 2100000, guid: c766c4d2cd7e66449801b454ef03d6d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_zel
+    second: {fileID: 2100000, guid: a65ef05129d50c646931c714943586a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_ser
+    second: {fileID: 2100000, guid: 55a6019bc2ce7834db33516faddf08f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_ser_1
+    second: {fileID: 2100000, guid: 26f60776b083f1a4da56c3ad3c8bffd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_ser_2
+    second: {fileID: 2100000, guid: 8d742adb29e5e514caf84fbf8c41f286, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_ser_3
+    second: {fileID: 2100000, guid: c796518b0dd88c64dbc5b731e11fb088, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_ser_bolt
+    second: {fileID: 2100000, guid: 6a3bc673a092c8e4997a90d757f693f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Odesha_bel
+    second: {fileID: 2100000, guid: 7c6e5a654d152714da35723a03c683e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Odesha_bel_1
+    second: {fileID: 2100000, guid: 4be638b70d28bfb428d402ffe3baa207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Odesha_kras
+    second: {fileID: 2100000, guid: 28669b42b6ed8114e89be6e916d549e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Odesha_kras_1
+    second: {fileID: 2100000, guid: f93873ad409a0574f80bb218685320b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Odesha_kras_2
+    second: {fileID: 2100000, guid: 3c8746d99ee38c943ba6708a5458faa8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Penki
+    second: {fileID: 2100000, guid: 6b17babe281d0824e91ea0f595f60a8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pomosh_chern
+    second: {fileID: 2100000, guid: 52b0ae3dc27486a48b08e21c0fe54a0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pomosh_gol
+    second: {fileID: 2100000, guid: 70dab9916e5661a499e7ce92092bfc90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pomosh_lico
+    second: {fileID: 2100000, guid: 463732b7d62ba4d4f905e8111612c0b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pomosh_zel
+    second: {fileID: 2100000, guid: 754b6545c2ef60a448c02e8e9136ad8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pomosh_zel_1
+    second: {fileID: 2100000, guid: 580f466c36cc34c4c861a6c009d71a17, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_eye
+    second: {fileID: 2100000, guid: 6350fb74785569c479c3bc1fc38ddc3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Second_Color
+    second: {fileID: 2100000, guid: bca55343eb508b1448cd5a165cff0715, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Snow (roughness)
     second: {fileID: 2100000, guid: 9c00d24c9dee8b7408cd5ad7de8fe7aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ukrahenia
+    second: {fileID: 2100000, guid: cd552774b110839419aa5eac9dc4ee79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ukrashenia1
+    second: {fileID: 2100000, guid: 8ff0e7b586127de45b90090cf4a75c6b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White.001
+    second: {fileID: 2100000, guid: 0dcb31a2d7bbac044889c9a090eef68b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White_Jetpack.001
+    second: {fileID: 2100000, guid: 35e1cc370f120434fad8911974eb4ef6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arms_green
+    second: {fileID: 2100000, guid: a5a726c1b3225af4c808e2e5a813b662, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elka_zelen
+    second: {fileID: 2100000, guid: e6c7f494dab61994785acad880503561, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elka_zelen_1
+    second: {fileID: 2100000, guid: 8be50677df9414743860b290e69ff5d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elka_zelen_2
+    second: {fileID: 2100000, guid: 49cbf80333152ab42ab7c3c49d5deee3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: engine.002
+    second: {fileID: 2100000, guid: f90507adb46cbcd43b46f305ba96f8fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: engine_box.002
+    second: {fileID: 2100000, guid: 7589cd46cefbb62479c40888837d4a1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: engine_inside(emission).002
+    second: {fileID: 2100000, guid: f538c7f7f702f1246a13a1e446d69d03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: engine_part1.002
+    second: {fileID: 2100000, guid: 3dd1f54966d69914da3f2bbd5c1bde6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ice_1
+    second: {fileID: 2100000, guid: 162e16f565a8d8d48b2a3c56b5b1c45c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ice_1.5
+    second: {fileID: 2100000, guid: d220452f1a7fd7348b4d56bb3d5bed47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ice_3
+    second: {fileID: 2100000, guid: 6e081fbfabecd3f46be65e2eae50a7a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ice_4
+    second: {fileID: 2100000, guid: c2a26b6adbd5e3e44bda9143167fbe1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: iceberg_lines
+    second: {fileID: 2100000, guid: c241e59d0fd1a1f469ea424b93e2a519, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: icicle.001
+    second: {fileID: 2100000, guid: 30ca690b2845c35429fefe32808effbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: icicle.002
+    second: {fileID: 2100000, guid: 3292e6cc6734c5441a63cac5e2141286, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: icicle.003
+    second: {fileID: 2100000, guid: bf9ea1121674e77438d478a90d3624a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert14
+    second: {fileID: 2100000, guid: cca4f70190e71b348bdac23faa238c9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert15
+    second: {fileID: 2100000, guid: 1201213efcc067b45a261071432baa1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert7
+    second: {fileID: 2100000, guid: 343110ea01aa2cc4f9e801cd7ebe3535, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert8
+    second: {fileID: 2100000, guid: 308de21125e79ae4281e1465a0999c7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert9
+    second: {fileID: 2100000, guid: 6474dafe46029ee48b95fe10402de779, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: okna
+    second: {fileID: 2100000, guid: ceace382b850f084192f9f4af0d0164d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: opora.002
+    second: {fileID: 2100000, guid: 92197493016a5474fbfcb2272c6d4849, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tubes.002
+    second: {fileID: 2100000, guid: f3036684d1427ad45b1bb5363568c347, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: zubi_bel
+    second: {fileID: 2100000, guid: 7fb84838a2b9295459bf5fb4cc2c17ba, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
