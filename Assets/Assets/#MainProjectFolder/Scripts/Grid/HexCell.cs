@@ -51,7 +51,7 @@ public class HexCell
     {
         
         playerPosCell = cell;
-        Debug.LogError("Hello camera should move");
+
         PlayerStateScript.Instance.WalkAnimationTrigger();
         Transform cameraTarget = PlayerStateScript.Instance.gameObject.transform;
         Vector3 start = cameraTarget.position;

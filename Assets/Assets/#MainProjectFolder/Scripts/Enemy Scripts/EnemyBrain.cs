@@ -63,6 +63,7 @@ public class EnemyBrain : MonoBehaviour
 
     public void TriggerDeathAnimation()
     {
+        
         enemyAnim.SetTrigger("Death");
     }
 

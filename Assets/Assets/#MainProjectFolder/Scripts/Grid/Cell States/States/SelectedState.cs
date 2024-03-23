@@ -28,6 +28,16 @@ public class SelectedState : BaseCellState
                // PlayerStateScript.Instance.ShootAnimationTrigger();
             }
         }
+        
+        if (currentCell.barrelExist)
+        {
+            cell.SetNeighbours(cell.Neighbours);
+            foreach (HexCell neighbour in cell.Neighbours)
+            {
+                HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                neighboredCell.Onfire();
+            }
+        }
 
         if (moveCameraCoroutine != null)
         {
@@ -99,14 +109,14 @@ public class SelectedState : BaseCellState
         {
             if ( cell.AxialCoordinates == new Vector2(0.00f, 0.00f))
             {
-                Debug.LogError("Hello camera should move");
+
                 moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
                 currentCell.canWalk = false;
             }
             //
             else if (cell.AxialCoordinates != HexCell.playerPosCell.AxialCoordinates &&  currentCell.playerExist != true)
             {
-                Debug.LogError("is here 2");
+
                 moveCameraCoroutine = CameraController.Instance.StartCoroutine(cell.MoveCameraToCell(cell));
                 
             }

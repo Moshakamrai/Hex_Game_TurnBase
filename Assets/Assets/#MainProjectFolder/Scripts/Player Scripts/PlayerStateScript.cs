@@ -9,12 +9,15 @@ public class PlayerStateScript : MonoBehaviour
 
     [SerializeField] private Animator playerAnim;
     [SerializeField] private GameObject playerContainer;
+    [SerializeField] private Transform shootDirection;
+    [SerializeField] private GameObject bulletPrefab;
     public bool isShooting;
     public bool playerTurn;
     public bool firstTurn;
 
     public GameObject enemyTarget;
     //public bool playerRotation;
+
     public static PlayerStateScript Instance
     {
         
@@ -124,6 +127,17 @@ public class PlayerStateScript : MonoBehaviour
         playerAnim.SetTrigger("Shooting");  
     }
 
+    public void ShootBarrelTrigger()
+    {
+        //enemyTarget = 
+        playerAnim.SetTrigger("Shooting2");
+    }
+
+    public void TriggerBarrelExplotion()
+    {
+        enemyTarget.GetComponent<BarrelScript>().TriggerDeathAnimation();
+    }
+
     public void TriggerEnemyDeathAnimation()
     {
         enemyTarget.GetComponent<EnemyBrain>().TriggerDeathAnimation();
@@ -131,6 +145,34 @@ public class PlayerStateScript : MonoBehaviour
     public void StabAnimationTrigger()
     {  
         playerAnim.SetTrigger("Stabbing");
+    }
+
+    public void BulletMovementTrigger()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, shootDirection.position, shootDirection.rotation);
+        StartCoroutine(bulletTravel(bullet.transform, enemyTarget.transform));
+    }
+
+    private IEnumerator bulletTravel(Transform bulletPosition, Transform targetPosition)
+    {
+
+        ParticleManager.Instance.PlayParticle("PlayerBullet", bulletPosition.position, bulletPosition.rotation, bulletPosition.transform);
+        while (targetPosition != null)
+        {
+            // Move the bullet towards the target
+            bulletPosition.position = Vector3.MoveTowards(bulletPosition.position, targetPosition.position, 250f * Time.deltaTime);
+
+            // Check if the bullet has reached the target
+            if (transform.position == targetPosition.position)
+            {
+                // If the bullet has reached the target, destroy it
+                Destroy(gameObject);
+                // You can add damage logic or other effects here
+                yield break; // Exit the coroutine
+            }
+
+            yield return null; // Wait for the next frame
+        }
     }
 
 }
