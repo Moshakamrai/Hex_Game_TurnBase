@@ -199,21 +199,25 @@ public class HexTerrain : MonoBehaviour
     public void Onfire()
     {
         Debug.LogError("ON FIRE");
-        PlayerStateScript.Instance.ShootBarrelTrigger();
-        canAction = false;
+        if (barrelObject != null)
+        {
+            PlayerStateScript.Instance.ShootBarrelTrigger(barrelObject);
+            canAction = false;
 
-        if (currentEnemyObject != null)
-        {
-            currentEnemyObject.GetComponent<EnemyBrain>().TriggerDeathAnimation();
+            if (currentEnemyObject != null)
+            {
+                currentEnemyObject.GetComponent<EnemyBrain>().TriggerDeathAnimation();
+            }
+            if (currentPlayerObject != null)
+            {
+                PlayerStateScript.Instance.DeathAnimationTrigger();
+            }
+            canWalk = false;
+            canMoveEnemy = false;
+            enemyExist = false;
+            playerExist = false;
         }
-        if (currentPlayerObject != null)
-        {
-            PlayerStateScript.Instance.DeathAnimationTrigger();
-        }
-        canWalk = false;
-        canMoveEnemy = false;
-        enemyExist = false;
-        playerExist = false;
+        
 
     }
 

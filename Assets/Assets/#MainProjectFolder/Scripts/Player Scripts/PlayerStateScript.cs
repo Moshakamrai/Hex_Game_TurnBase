@@ -127,9 +127,10 @@ public class PlayerStateScript : MonoBehaviour
         playerAnim.SetTrigger("Shooting");  
     }
 
-    public void ShootBarrelTrigger()
+    public void ShootBarrelTrigger(GameObject barrel)
     {
         //enemyTarget = 
+        enemyTarget = barrel;
         playerAnim.SetTrigger("Shooting2");
     }
 

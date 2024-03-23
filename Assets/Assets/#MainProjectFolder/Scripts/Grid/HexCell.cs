@@ -106,7 +106,7 @@ public class HexCell
         
         ResourceManager.Instance.PlayersTurn();
 
-        Debug.LogError("after enemy Moved it should call active function now");
+        //Debug.LogError("after enemy Moved it should call active function now");
         if (ResourceManager.Instance.givenTurn == 0)
         {
             Debug.LogWarning("Players turn finally ");
