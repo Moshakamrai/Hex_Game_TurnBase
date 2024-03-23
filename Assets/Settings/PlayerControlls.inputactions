@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ScreenTap",
+                    "type": "Button",
+                    "id": "a5467b29-a3e0-4354-b19d-e511823e935a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -199,6 +208,17 @@
                 },
                 {
                     "name": "",
+                    "id": "084d37c3-1ae3-4282-8878-c37f4b4d9bc5",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "MultiTap(tapDelay=0.4,tapCount=5)",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Focus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "aefec840-ac99-4625-97c3-1a443de4dce0",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
@@ -227,6 +247,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Deselect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3d69132-c477-4733-aa59-b417caa03e26",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deselect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ce947a4-59ce-4e43-acd0-6f28e81f521c",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScreenTap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

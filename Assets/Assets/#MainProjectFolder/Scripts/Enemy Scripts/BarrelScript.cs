@@ -17,15 +17,17 @@ public class BarrelScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        // This method will be called when the object is clicked or tapped
-        // Add your desired functionality here
-       
-        //if (tileObjectScript.canAction == true && tileObjectScript.barrelExist == true && tileObjectScript != null)
-        //{
-        //    PlayerStateScript.Instance.ShootBarrelTrigger(gameObject);
-        //    tileObjectScript.canAction = false;
-        //    tileObjectScript.possibleKill = false;
-        //}
+        //This method will be called when the object is clicked or tapped
+        //Add your desired functionality here
+
+
+        if (tileObjectScript.canAction == true && tileObjectScript.barrelExist == true && tileObjectScript != null)
+        {
+            PlayerStateScript.Instance.ShootBarrelTrigger(gameObject);
+            tileObjectScript.barrelExploded = true;
+            tileObjectScript.canAction = false;
+            tileObjectScript.possibleKill = false;
+        }
 
     }
 
@@ -35,4 +37,6 @@ public class BarrelScript : MonoBehaviour
         Destroy(gameObject);
         Debug.LogError("particle effects");
     }
+
+
 }

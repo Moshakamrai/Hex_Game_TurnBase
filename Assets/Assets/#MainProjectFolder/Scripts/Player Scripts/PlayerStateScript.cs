@@ -2,7 +2,8 @@ using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+using System;
 public class PlayerStateScript : MonoBehaviour
 {
     private static PlayerStateScript instance;
@@ -15,7 +16,10 @@ public class PlayerStateScript : MonoBehaviour
     public bool playerTurn;
     public bool firstTurn;
 
+    public event Action onSelectAction;
+
     public GameObject enemyTarget;
+    public GameObject environmentObject;
     //public bool playerRotation;
 
     public static PlayerStateScript Instance
@@ -62,6 +66,21 @@ public class PlayerStateScript : MonoBehaviour
         HandleRotationInput();
     }
 
+    public void OnSelectTap(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.LogError("Single tap - Select");
+            onSelectAction?.Invoke();
+        }
+
+        else if (context.canceled)
+        {
+            
+        }
+    }
+
+   
     void HandleRotationInput()
     {
         if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
@@ -75,17 +94,20 @@ public class PlayerStateScript : MonoBehaviour
                 RotateTowards(targetPosition);
             }
         }
-        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) // Touch input
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            RaycastHit hit;
+       // && Input.GetTouch(0).phase == TouchPhase.Began
+        //else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) // Touch input
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        //    RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                Vector3 targetPosition = hit.point;
-                RotateTowards(targetPosition);
-            }
-        }
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        Vector3 targetPosition = hit.point;
+        //        RotateTowards(targetPosition);
+        //        //CameraController.Instance.onSelectAction?.Invoke();
+        //        onSelectAction?.Invoke();
+        //    }
+        //}
     }
 
     void RotateTowards(Vector3 targetPosition)
@@ -162,18 +184,24 @@ public class PlayerStateScript : MonoBehaviour
         {
             // Move the bullet towards the target
             bulletPosition.position = Vector3.MoveTowards(bulletPosition.position, targetPosition.position, 250f * Time.deltaTime);
-
+            
             // Check if the bullet has reached the target
             if (transform.position == targetPosition.position)
             {
                 // If the bullet has reached the target, destroy it
-                Destroy(gameObject);
+               
+                
                 // You can add damage logic or other effects here
                 yield break; // Exit the coroutine
             }
 
             yield return null; // Wait for the next frame
         }
+    }
+
+    public void GiveTheTokens()
+    {
+        ResourceManager.Instance.GiveToken();
     }
 
 }

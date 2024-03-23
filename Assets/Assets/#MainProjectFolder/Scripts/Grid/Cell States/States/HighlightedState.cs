@@ -7,10 +7,11 @@ public class HighlightedState : BaseCellState
 
     public override void Enter(HexCell cell)
     {
-        //Debug.LogError($"Cell {cell.AxialCoordinates} is in Highlighted State");
+        Debug.LogError($"Cell {cell.AxialCoordinates} is in Highlighted State");
         //Tween local Scale of the cell.Terrain gameobject
         LeanTween.scale(cell.Terrain.gameObject, Vector3.one * 1f, 0.1f).setEase(LeanTweenType.easeOutBack);
         LeanTween.moveY(cell.Terrain.gameObject, 3.5f, 0.2f).setEase(LeanTweenType.easeOutBack);
+        CameraController.Instance.onTileSelection += cell.OnSelect;
         CameraController.Instance.onSelectAction += cell.OnSelect;
     }
 

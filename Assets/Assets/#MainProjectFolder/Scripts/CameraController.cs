@@ -37,6 +37,7 @@ public class CameraController : Singleton<CameraController>
     public event Action onSelectAction;
     public event Action onDeselectAction;
     public event Action onFocusAction;
+    public event Action onTileSelection;
 
     public bool IsLocked { get => isLocked; set => isLocked = value; }
     public GameObject CameraTarget { get => cameraTarget; }
@@ -118,7 +119,17 @@ public class CameraController : Singleton<CameraController>
             }
         }
     }
-   
+    //public void OnSelectTap(InputAction.CallbackContext context)
+    //{
+    //    if (context.performed)
+    //    {
+    //        Debug.LogError("Single tap - Select");
+    //        //onSelectAction?.Invoke();
+    //        onFocusAction?.Invoke();
+    //    }
+
+        
+    //}
     public void OnFocusChange(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -133,7 +144,7 @@ public class CameraController : Singleton<CameraController>
         }
         else if (context.canceled)
         {
-            //Debug.Log("Single tap - Select");
+            //Debug.LogError("Single tap - Select");
             onSelectAction?.Invoke();
         }
     }

@@ -8,6 +8,7 @@ TagManager:
   - Missile
   - Enemy
   - Barrel
+  - Block
   layers:
   - Default
   - TransparentFX

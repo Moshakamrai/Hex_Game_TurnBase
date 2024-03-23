@@ -40,13 +40,13 @@ public class ResourceManager : Singleton<ResourceManager>
         givenTurn = enemyCount;
         for (int i = 0; i <= enemyCount; i++)
         {
-            if (enemyObjects[i] != null)
+            if (enemyObjects[i] != null && !enemyObjects[i].GetComponent<EnemyBrain>().death)
             {
                 givenTurn -= 1;
                 //Debug.LogError("giving tokens" + i);
                 enemyObjects[i].GetComponent<EnemyBrain>().turnToken = 1;
             }
-            if (enemyObjects[i] == null)
+            if (enemyObjects[i] == null || enemyObjects[i].GetComponent<EnemyBrain>().death)
             {
                 givenTurn -= 1;
             }

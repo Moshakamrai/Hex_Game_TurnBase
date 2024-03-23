@@ -42,6 +42,7 @@ public class EnemyBrain : MonoBehaviour
     {
         // This method will be called when the object is clicked or tapped
         // Add your desired functionality here
+        death = true;
         Debug.Log("Mouse click or tap detected on " + gameObject.name);
         if (tileState.canAction == true && tileState.possibleKill == true)
         {
@@ -51,6 +52,8 @@ public class EnemyBrain : MonoBehaviour
         }
         
     }
+
+
     private void Update()
     {
         // Ensure playerObject is not null and the enemy is alive

@@ -16,8 +16,20 @@ public class OnActiveState :BaseCellState
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         EnemyBrain enemyObject = cell.Terrain.gameObject.GetComponentInChildren<EnemyBrain>();
         storedEnemyCell = cell;
-        
-        if (currentCell.enemyExist)
+
+        if (currentCell.barrelExist && currentCell.barrelExploded)
+        {
+            Debug.Log("should be on fire");
+            currentCell.barrelExploded = false;
+            cell.SetNeighbours(cell.Neighbours);
+            foreach (HexCell neighbour in cell.Neighbours)
+            {
+                HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                neighboredCell.Onfire();
+            }
+        }
+
+        if (currentCell.enemyExist && !currentCell.currentEnemyObject.GetComponent<EnemyBrain>().death )
         {
             if (storedEnemyCell != null)
             {
@@ -30,12 +42,12 @@ public class OnActiveState :BaseCellState
                 }
             }
             cell.SetNeighbours(cell.Neighbours);
-            //if (PlayerStateScript.Instance.playerTurn == false) 
+            if (!currentCell.currentEnemyObject.GetComponent<EnemyBrain>().death)
             {
                 foreach (HexCell neighbour in cell.Neighbours)
                 {
                     HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                    if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist)
+                    if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist && !currentCell.obstableObject)
                     {
                         if (enemyObject.turnToken == 1 && enemyObject != null)
                         {
@@ -71,34 +83,36 @@ public class OnActiveState :BaseCellState
                     }
                     //ResourceManager.Instance.GiveToken(enemyObject.gameObject);
                 }
-                
+                cell.EnemySetAttackHexes(cell._AttackCells);
+                foreach (HexCell attacker in cell._AttackCells)
+                {
+                    HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                    if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
+                    {
+                        if (attackCell.playerExist)
+                        {
+                            Debug.LogError("Can Kill Player next turn");
+                            attackCell.EnemyKillPlayerMesher();
+                            //attackCell.canMoveEnemy = false;
+                        }
+                        else if (attacker != null && !attackCell.enemyExist)
+                        {
+                            attackCell.EnemyKillPlayerMesher();
+
+                        }
+                        if (attackCell.playerExist || attackCell.barrelExist)
+                        {
+                            break;
+                        }
+                    }
+
+                }
+
             }
             
         }
-        //cell.EnemySetAttackHexes(cell._AttackCells);
-        //foreach (HexCell attacker in cell._AttackCells)
-        //{
-        //    HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-        //    if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
-        //    {
-        //        if (attacker != null && attackCell.playerExist)
-        //        {
-        //            attackCell.MesherEnemy();
-        //            attackCell.canMoveEnemy = false;
-        //        }
-        //        else if (attacker != null && !attackCell.enemyExist)
-        //        {
-        //            attackCell.EnemyViewMesher();
 
-        //        }
-        //        if (attacker.TerrainType.ID == 5 && attackCell.enemyExist)
-        //        {
-        //            break;
-        //        }
-        //    }
 
-        //}
-        
     }
     public override void Exit(HexCell cell)
     {

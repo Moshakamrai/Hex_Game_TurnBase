@@ -14,6 +14,7 @@ public class SelectedState : BaseCellState
         Debug.LogWarning($"Cell {cell.AxialCoordinates} is entering Selected State");
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         CameraController.Instance.onDeselectAction += cell.OnDeselect;
+        
         CameraController.Instance.onFocusAction += cell.OnFocus;
         CameraController.Instance.IsLocked = true;
         storedHexcel = cell;
@@ -29,15 +30,7 @@ public class SelectedState : BaseCellState
             }
         }
         
-        if (currentCell.barrelExist)
-        {
-            cell.SetNeighbours(cell.Neighbours);
-            foreach (HexCell neighbour in cell.Neighbours)
-            {
-                HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                neighboredCell.Onfire();
-            }
-        }
+       
 
         if (moveCameraCoroutine != null)
         {
@@ -62,7 +55,7 @@ public class SelectedState : BaseCellState
                     neighboredCell.canWalk = false;
                     
                 }
-                if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1 && neighbour.TerrainType.ID == 0)
+                if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1 || neighbour.TerrainType.ID == 0)
                 {
                     if (neighbour != null && neighboredCell.possibleKill)
                     {

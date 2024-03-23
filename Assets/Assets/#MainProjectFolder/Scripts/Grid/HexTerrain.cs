@@ -22,14 +22,20 @@ public class HexTerrain : MonoBehaviour
     public bool canMoveEnemy;
     public bool enemyExist;
     public bool playerExist;
+    public bool possibleKillPlayer;
 
+    public bool barrelExploded;
     public bool barrelExist;
+    public bool obstacleExist;
     //public int cellToken;
     MeshRenderer thisMesh;
+
+    
 
     public GameObject currentEnemyObject;
     public GameObject currentPlayerObject;
     public GameObject barrelObject;
+    public GameObject obstableObject;
     private void Start()
     {
         parentCollider = GetComponent<Collider>();
@@ -59,6 +65,17 @@ public class HexTerrain : MonoBehaviour
         {
             currentEnemyObject.GetComponent<EnemyBrain>().TriggerStabbingAnimation();
         }
+        OnTap();
+    }
+
+    private void OnTap()
+    {
+        //// Check if the left mouse button was pressed (or a tap on the screen on mobile devices)
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    // Invoke the OnMouseEnterAction event
+        //    OnMouseEnterAction?.Invoke();
+        //}
     }
     private void OnMouseEnter()
     {
@@ -71,6 +88,8 @@ public class HexTerrain : MonoBehaviour
         Debug.Log("Mouse exit");
         OnMouseExitAction?.Invoke();
     }
+
+    
 
     public void Mesher()
     {
@@ -94,6 +113,14 @@ public class HexTerrain : MonoBehaviour
         thisMesh.material = InteractableMat;
         canAction = true;
         possibleKill = true;
+    }
+
+    public void MesherPlayer()
+    {
+        thisMesh.enabled = true;
+        thisMesh.material = InteractableMat;
+        //canActionPlayer = true;
+        possibleKillPlayer = true;
     }
 
     public void BarrelMesher()
@@ -129,9 +156,9 @@ public class HexTerrain : MonoBehaviour
             //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
             possibleKill = true;
             enemyExist = true;
-            canAction = true;
+            //canAction = true;
         }
-        if (collision.gameObject.CompareTag("Barrel"))
+        else if (collision.gameObject.CompareTag("Barrel"))
         {
             barrelObject = collision.gameObject;
             Debug.LogError("Bomb barrel is here");
@@ -144,13 +171,18 @@ public class HexTerrain : MonoBehaviour
             playerExist = false;
         }
 
+        else if (collision.gameObject.CompareTag("Block"))
+        {
+            obstableObject = collision.gameObject;
+            obstacleExist = true;
+        }
+
     }
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && !collision.gameObject.GetComponent<EnemyBrain>().death)
         {
-            //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
-            //Debug.LogError("enemyexist");
+            
             currentEnemyObject = collision.gameObject;
             
             enemyExist = true;       
@@ -160,7 +192,14 @@ public class HexTerrain : MonoBehaviour
         if (collision.gameObject.CompareTag("Barrel"))
         {
             BarrelMesher();
+            barrelObject = collision.gameObject;
             Debug.LogError("Bomb barrel is here");
+        }
+
+        else if (collision.gameObject.CompareTag("Block"))
+        {
+            obstableObject = collision.gameObject;
+            obstacleExist = true;
         }
     }
 
@@ -170,6 +209,7 @@ public class HexTerrain : MonoBehaviour
         {
             
             currentPlayerObject = other.gameObject;
+            possibleKill = true;
             playerExist = true;
         }
     }
@@ -179,6 +219,7 @@ public class HexTerrain : MonoBehaviour
         {
             currentPlayerObject = null;
             playerExist = false;
+            possibleKill = false;
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -191,7 +232,7 @@ public class HexTerrain : MonoBehaviour
             enemyExist = false;
             
             possibleKill = false;
-            
+           
         }
        
     }
@@ -199,10 +240,9 @@ public class HexTerrain : MonoBehaviour
     public void Onfire()
     {
         Debug.LogError("ON FIRE");
-        if (barrelObject != null)
-        {
-            PlayerStateScript.Instance.ShootBarrelTrigger(barrelObject);
-            canAction = false;
+
+           // PlayerStateScript.Instance.ShootBarrelTrigger(barrelObject);
+            
 
             if (currentEnemyObject != null)
             {
@@ -212,11 +252,12 @@ public class HexTerrain : MonoBehaviour
             {
                 PlayerStateScript.Instance.DeathAnimationTrigger();
             }
+            canAction = false;
             canWalk = false;
             canMoveEnemy = false;
             enemyExist = false;
             playerExist = false;
-        }
+
         
 
     }
