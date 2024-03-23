@@ -119,26 +119,32 @@ public class CameraController : Singleton<CameraController>
             }
         }
     }
-    //public void OnSelectTap(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        Debug.LogError("Single tap - Select");
-    //        //onSelectAction?.Invoke();
-    //        onFocusAction?.Invoke();
-    //    }
+    public void OnSelectTap(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+             Debug.LogError("Focus button pressed... What's it gonna be?");
+        }
+        if (context.canceled)
+        {
+            Debug.LogError("Single tap - Select");
+            //onSelectAction?.Invoke();
+            onFocusAction?.Invoke();
+        }
 
-        
-    //}
+
+    }
+
+
     public void OnFocusChange(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            Debug.Log("Focus button pressed... What's it gonna be?");
+           // Debug.LogError("Focus button pressed... What's it gonna be?");
         }
         else if (context.performed)
         {
-            //Debug.Log("Double tapped - Focus");
+            //Debug.LogError("Double tapped - Focus");
             //ChangeCamera(CameraMode.Focus);
             onFocusAction?.Invoke();
         }
