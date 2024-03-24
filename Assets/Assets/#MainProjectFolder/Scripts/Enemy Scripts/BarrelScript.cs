@@ -20,7 +20,7 @@ public class BarrelScript : MonoBehaviour
         //This method will be called when the object is clicked or tapped
         //Add your desired functionality here
 
-
+       
         if (tileObjectScript.canAction == true && tileObjectScript.barrelExist == true && tileObjectScript != null)
         {
             tileObjectScript.barrelExploded = true;

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level4 Lighting.unity
     guid: 4c47dfe1b1c96d34ab2ac8eab6939e2b
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level5 Lighting.unity
+    guid: 861e0f619828d90408c7b76840b48bbd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 701a903126f7f7548a1f377164716410,
       type: 2}

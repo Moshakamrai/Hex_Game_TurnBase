@@ -64,7 +64,8 @@ public class HexCell
         float elapsed = 0f;
         while (elapsed < duration)
         {
-            end.y -= 0.3f;
+           //end.y -= 0.3f;
+            end.y -= 0.1f;
             cameraTarget.position = Vector3.Lerp(start, end, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;

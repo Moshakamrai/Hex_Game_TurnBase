@@ -24,7 +24,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: efab33a4464581a4ab3dbd472570a7c0, type: 2}
+  m_Motion: {fileID: 7400000, guid: 832b87b1c12b77245befe31c5d48a516, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -173,7 +173,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyController
+  m_Name: EnemyController 2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Death
