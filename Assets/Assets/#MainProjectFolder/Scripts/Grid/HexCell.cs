@@ -83,6 +83,7 @@ public class HexCell
 
     public IEnumerator MoveToCell(Transform targetObject, HexCell cell)
     {
+        
         targetObject.transform.SetParent(cell.Terrain.gameObject.transform);
         Vector3 start = targetObject.position;
         Vector3 end = cell.Terrain.transform.position;

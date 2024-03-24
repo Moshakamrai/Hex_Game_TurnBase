@@ -31,7 +31,7 @@ public class HighlightedState : BaseCellState
 
     public override ICellState OnSelect()
     {
-        if (SelectedState.storedHexcel != null )
+        if (SelectedState.storedHexcel != null)
         {
             SelectedState.storedHexcel.SetNeighbours(SelectedState.storedHexcel.Neighbours);
             SelectedState.storedHexcel.SetAttackHexes(SelectedState.storedHexcel._AttackCells);
@@ -48,7 +48,7 @@ public class HighlightedState : BaseCellState
             }
         }
 
-        
+
         return new SelectedState();
     }
 

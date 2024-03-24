@@ -8,7 +8,7 @@ public class ResourceManager : Singleton<ResourceManager>
     [SerializeField] private int tokenCount = 0;
     [SerializeField] private int enemyCount;
     [SerializeField] public int givenTurn;
-    [SerializeField] private int enemyDead;
+
     [SerializeField] private List<GameObject> enemyObjects = new List<GameObject>();
     [SerializeField] EnemyBrain enemyState;
     [SerializeField] private HexGrid allCells;
@@ -20,7 +20,7 @@ public class ResourceManager : Singleton<ResourceManager>
     private void Start()
     {
 
-        enemyDead = 0;
+
         StartCoroutine(SetEnemyObjects());
     }
 

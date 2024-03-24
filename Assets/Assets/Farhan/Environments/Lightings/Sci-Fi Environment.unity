@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 924836787}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.1743073, g: 0.21798873, b: 0.30020854, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,7 +227,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1133076150}
-  - {fileID: 1175574646}
   - {fileID: 145205695}
   - {fileID: 403670311}
   m_Father: {fileID: 0}
@@ -515,7 +514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &145205695
 Transform:
   m_ObjectHideFlags: 0
@@ -525,7 +524,7 @@ Transform:
   m_GameObject: {fileID: 145205694}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4383711, y: -0, z: -0, w: 0.89879405}
-  m_LocalPosition: {x: 65.7, y: 300, z: -150}
+  m_LocalPosition: {x: 89.079994, y: 300, z: -111.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1512,9 +1511,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32ce5c31b37d8bc47bb3973f4962c215, type: 2}
   - {fileID: 11400000, guid: e473066373e3b0a46b7a03b59609e252, type: 2}
   tokenCount: 0
+  enemyCount: 0
+  givenTurn: 0
+  enemyDead: 0
   enemyObjects: []
   enemyState: {fileID: 0}
   allCells: {fileID: 0}
+  enemyAlive: 0
+  levelCompleteUI: {fileID: 0}
 --- !u!4 &507525405
 Transform:
   m_ObjectHideFlags: 0
@@ -2103,7 +2107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &677166625
 Transform:
   m_ObjectHideFlags: 0
@@ -4231,7 +4235,7 @@ Transform:
   m_GameObject: {fileID: 1133076147}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4383711, y: -0, z: -0, w: 0.89879405}
-  m_LocalPosition: {x: 65.7, y: 300, z: -150}
+  m_LocalPosition: {x: 89.079994, y: 300, z: -111.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4511,12 +4515,12 @@ Transform:
   m_GameObject: {fileID: 1175574645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0, z: 0}
+  m_LocalPosition: {x: 0.7, y: 0, z: 38.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 332535536}
-  m_Father: {fileID: 87389088}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1175574647
 MonoBehaviour:
@@ -4628,6 +4632,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4570f338-324f-4776-9e92-49f91f0c8ac6
     m_ActionName: World/Deselect[/Keyboard/backspace,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5467b29-a3e0-4354-b19d-e511823e935a
+    m_ActionName: World/ScreenTap
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: World
@@ -6395,7 +6403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 65, y: 300, z: -150}
+  m_FollowOffset: {x: 88.38, y: 300, z: -150}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -6434,7 +6442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1657913338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6463,8 +6471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexGrid: {fileID: 1657913340}
-  Width: 6
-  Height: 6
+  Width: 5
+  Height: 4
   NoiseScale: 50
   Octaves: 3
   Persistance: 0.658
@@ -6479,15 +6487,6 @@ MonoBehaviour:
   - Height: 0.43
     TerrainType: {fileID: 11400000, guid: 32ce5c31b37d8bc47bb3973f4962c215, type: 2}
     Probability: 0.1
-  - Height: 0.46
-    TerrainType: {fileID: 11400000, guid: ea61aa3eb36d42e4bb8c5a3ad8c5cdb7, type: 2}
-    Probability: 0.2
-  - Height: 0.6
-    TerrainType: {fileID: 11400000, guid: d65310cd317b68446954ad6f3cb9f24c, type: 2}
-    Probability: 0.6
-  - Height: 0.7
-    TerrainType: {fileID: 11400000, guid: d65310cd317b68446954ad6f3cb9f24c, type: 2}
-    Probability: 1
 --- !u!114 &1657913340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6501,8 +6500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Orientation>k__BackingField: 0
-  <Width>k__BackingField: 6
-  <Height>k__BackingField: 6
+  <Width>k__BackingField: 5
+  <Height>k__BackingField: 4
   <HexSize>k__BackingField: 30
   <BatchSize>k__BackingField: 50
   DefaultVisibleCells:
@@ -6518,7 +6517,7 @@ Transform:
   m_GameObject: {fileID: 1657913337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 43.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8706,8 +8705,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 0}
   playerContainer: {fileID: 0}
+  shootDirection: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   isShooting: 0
   playerTurn: 0
+  firstTurn: 0
+  enemyTarget: {fileID: 0}
+  environmentObject: {fileID: 0}
 --- !u!136 &1788865168
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10686,6 +10690,7 @@ SceneRoots:
   - {fileID: 973060161}
   - {fileID: 1706614449}
   - {fileID: 1497927745}
+  - {fileID: 1175574646}
   - {fileID: 87389088}
   - {fileID: 1135886485}
   - {fileID: 1718600712140269150}

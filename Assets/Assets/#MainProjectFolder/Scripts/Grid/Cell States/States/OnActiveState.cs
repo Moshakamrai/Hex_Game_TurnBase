@@ -24,23 +24,22 @@ public class OnActiveState :BaseCellState
             cell.SetNeighbours(cell.Neighbours);
             foreach (HexCell neighbour in cell.Neighbours)
             {
-                HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>(); 
                 neighboredCell.Onfire();
             }
         }
 
         if (currentCell.enemyExist && !currentCell.currentEnemyObject.GetComponent<EnemyBrain>().death )
         {
-            if (storedEnemyCell != null)
-            {
-                storedEnemyCell.SetNeighbours(storedEnemyCell.Neighbours);
+            
+                cell.SetNeighbours(storedEnemyCell.Neighbours);
                 foreach (HexCell neighbour in storedEnemyCell.Neighbours)
                 {
                     //Debug.LogError("after enemy Moved it should Unmesh now");
 
                     neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
                 }
-            }
+           
             cell.SetNeighbours(cell.Neighbours);
             if (!currentCell.currentEnemyObject.GetComponent<EnemyBrain>().death)
             {
@@ -93,7 +92,7 @@ public class OnActiveState :BaseCellState
                 foreach (HexCell attacker in cell._AttackCells)
                 {
                     HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                    if (cell.TerrainType.ID == 0 || currentCell.currentEnemyObject.GetComponent<EnemyBrain>().gunner)
+                    if (cell.TerrainType.ID == 0 && currentCell.currentEnemyObject.GetComponent<EnemyBrain>().gunner)
                     {
                         if (attackCell.playerExist)
                         {

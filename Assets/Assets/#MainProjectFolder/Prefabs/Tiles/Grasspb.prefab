@@ -141,7 +141,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4289327858911846339}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -226,8 +226,14 @@ MonoBehaviour:
   canMoveEnemy: 0
   enemyExist: 0
   playerExist: 0
+  possibleKillPlayer: 0
+  barrelExploded: 0
+  barrelExist: 0
+  obstacleExist: 0
   currentEnemyObject: {fileID: 0}
   currentPlayerObject: {fileID: 0}
+  barrelObject: {fileID: 0}
+  obstableObject: {fileID: 0}
 --- !u!1001 &3853419269385865671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7677672171268998782, guid: f39a75cee852b4a489a581917952cebd,
         type: 3}

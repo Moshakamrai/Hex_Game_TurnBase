@@ -11,7 +11,7 @@ public class BarrelScript : MonoBehaviour
         if(collision.gameObject.GetComponent<HexTerrain>() != null)
         {
             tileObjectScript = collision.gameObject.GetComponent<HexTerrain>(); 
-            Debug.LogError("Got the tile");
+            //Debug.LogError("Got the tile");
         }
     }
 
@@ -23,8 +23,8 @@ public class BarrelScript : MonoBehaviour
 
         if (tileObjectScript.canAction == true && tileObjectScript.barrelExist == true && tileObjectScript != null)
         {
-            PlayerStateScript.Instance.ShootBarrelTrigger(gameObject);
             tileObjectScript.barrelExploded = true;
+            PlayerStateScript.Instance.ShootBarrelTrigger(gameObject);
             tileObjectScript.canAction = false;
             tileObjectScript.possibleKill = false;
         }
@@ -35,7 +35,7 @@ public class BarrelScript : MonoBehaviour
     {
         ParticleManager.Instance.PlayParticle("BarrelExplostion", transform.position, transform.rotation);
         Destroy(gameObject);
-        Debug.LogError("particle effects");
+        //Debug.LogError("particle effects");
     }
 
 

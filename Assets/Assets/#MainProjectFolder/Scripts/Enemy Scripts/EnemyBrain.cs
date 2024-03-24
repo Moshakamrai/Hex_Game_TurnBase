@@ -70,6 +70,7 @@ public class EnemyBrain : MonoBehaviour
 
     public void TriggerDeathAnimation()
     {
+        death = true;
         ResourceManager.Instance.EnemyChecker();
         bloodExplode.Play();
         enemyAnim.SetTrigger("Death");

@@ -21,7 +21,7 @@ public class SelectedState : BaseCellState
         
         if (currentCell.enemyExist)
         {
-            Debug.LogError("Can Action is true for this cell " + cell.AxialCoordinates);
+            //Debug.LogError("Can Action is true for this cell " + cell.AxialCoordinates);
             if (cell.TerrainType.ID == 5 || cell.TerrainType.ID == 1)
             {
                 PlayerStateScript.Instance.isShooting = true;
@@ -81,7 +81,7 @@ public class SelectedState : BaseCellState
             {
                 if (attackCell.possibleKill)
                 {
-                    Debug.LogError("enemy should be here to kill");
+                   // Debug.LogError("enemy should be here to kill");
                     attackCell.canAction = true;
                     attackCell.MesherEnemy();
                     attackCell.canWalk = false;

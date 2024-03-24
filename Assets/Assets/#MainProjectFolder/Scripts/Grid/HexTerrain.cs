@@ -154,7 +154,7 @@ public class HexTerrain : MonoBehaviour
         else if (collision.gameObject.CompareTag("Barrel"))
         {
             barrelObject = collision.gameObject;
-            Debug.LogError("Bomb barrel is here");
+           // Debug.LogError("Bomb barrel is here");
             barrelExist = true;
             canAction = true;
             possibleKill = false;
@@ -166,7 +166,7 @@ public class HexTerrain : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Block"))
         {
-            Debug.LogError("Block is here");
+            //Debug.LogError("Block is here");
             obstableObject = collision.gameObject;
             obstacleExist = true;
         }
@@ -187,7 +187,7 @@ public class HexTerrain : MonoBehaviour
         {
             BarrelMesher();
             barrelObject = collision.gameObject;
-            Debug.LogError("Bomb barrel is here");
+           // Debug.LogError("Bomb barrel is here");
         }
 
         //else if (collision.gameObject.CompareTag("Block"))

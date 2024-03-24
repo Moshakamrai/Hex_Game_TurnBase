@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level1 Lighting.unity
+    guid: 9fb8f006d67347b489a31556a9315f3f
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level2 Lighting.unity
+    guid: a4684eccec89980429d8d7d6f20cdc0b
+  - enabled: 1
     path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level3 Lighting.unity
     guid: dfd81012b962dc044967b62f4912acc2
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level4 Lighting.unity
+    guid: 4c47dfe1b1c96d34ab2ac8eab6939e2b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 701a903126f7f7548a1f377164716410,
       type: 2}
