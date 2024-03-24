@@ -47,7 +47,7 @@ public class OnActiveState :BaseCellState
                 foreach (HexCell neighbour in cell.Neighbours)
                 {
                     HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                    if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist && !currentCell.obstableObject)
+                    if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist && !neighboredCell.obstacleExist)
                     {
                         if (enemyObject.turnToken == 1 && enemyObject != null)
                         {
@@ -55,8 +55,13 @@ public class OnActiveState :BaseCellState
                             Vector2 distanceToCell = cell.AxialCoordinates - HexCell.playerPosCell.AxialCoordinates;
                             if(distanceToNeighbour.magnitude < distanceToCell.magnitude)
                             {
-                                enemyObject.turnToken = 0;
+                                neighboredCell.possibleKill = true;
+                                if (neighboredCell.playerExist)
+                                {
 
+                                }
+                                enemyObject.turnToken = 0;
+                                
                                 enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
                             }
                             //enemyObject.gameObject.transform.position = neighboredCell.gameObject.transform.position;
@@ -83,11 +88,12 @@ public class OnActiveState :BaseCellState
                     }
                     //ResourceManager.Instance.GiveToken(enemyObject.gameObject);
                 }
+                
                 cell.EnemySetAttackHexes(cell._AttackCells);
                 foreach (HexCell attacker in cell._AttackCells)
                 {
                     HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                    if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
+                    if (cell.TerrainType.ID == 0 || currentCell.currentEnemyObject.GetComponent<EnemyBrain>().gunner)
                     {
                         if (attackCell.playerExist)
                         {

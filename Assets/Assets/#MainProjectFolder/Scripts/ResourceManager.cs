@@ -13,6 +13,10 @@ public class ResourceManager : Singleton<ResourceManager>
     [SerializeField] EnemyBrain enemyState;
     [SerializeField] private HexGrid allCells;
 
+
+    [SerializeField] private int enemyAlive;
+    [SerializeField] private GameObject levelCompleteUI;
+
     private void Start()
     {
 
@@ -38,22 +42,44 @@ public class ResourceManager : Singleton<ResourceManager>
         allCells.SetActiveCells();
         PlayerStateScript.Instance.playerTurn = false;
         givenTurn = enemyCount;
-        for (int i = 0; i <= enemyCount; i++)
+        for (int i = 0; i < enemyCount; i++)
         {
             if (enemyObjects[i] != null && !enemyObjects[i].GetComponent<EnemyBrain>().death)
             {
+                
                 givenTurn -= 1;
                 //Debug.LogError("giving tokens" + i);
                 enemyObjects[i].GetComponent<EnemyBrain>().turnToken = 1;
             }
             if (enemyObjects[i] == null || enemyObjects[i].GetComponent<EnemyBrain>().death)
             {
+               
                 givenTurn -= 1;
             }
         }
         
     }
-    
+
+    private void LateUpdate()
+    {
+        
+    }
+
+    public void EnemyChecker()
+    {
+        enemyAlive -= 1;
+        if (enemyAlive == 0)
+        {
+            StartCoroutine(LevelComplete());
+        }
+       
+    }
+
+    private IEnumerator LevelComplete()
+    {
+        yield return new WaitForSeconds(1f);
+        levelCompleteUI.SetActive(true);
+    }
 
     public void PlayersTurn()
     {

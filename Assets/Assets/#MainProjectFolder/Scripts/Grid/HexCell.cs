@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [Serializable]
@@ -58,25 +58,25 @@ public class HexCell
         Vector3 end = cell.Terrain.transform.position;
 
         // Adjust the end position to move up by 5 units in the Y axis
-        end.y += 15f;
+        end.y += 10f;
 
         float duration = 0.82f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
-            end.y -= 0.025f;
+            end.y -= 0.3f;
             cameraTarget.position = Vector3.Lerp(start, end, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
             
         }
-        end.y -= 10f; 
+        end.y = 6f; 
 
         cameraTarget.position = end; // Ensure the final position is accurate
         //SelectedState.moveCount++;
         PlayerStateScript.Instance.IdleAnimationTrigger();
         
-        ResourceManager.Instance.GiveToken();
+       // ResourceManager.Instance.GiveToken();
        // Grid.SetActiveCells();
         
     }
@@ -90,7 +90,7 @@ public class HexCell
         // Adjust the end position to move up by 5 units in the Y axis
         end.y += 5f;
 
-        float duration = 0.75f; // Adjust the duration as needed
+        float duration = 0.65f; // Adjust the duration as needed
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -103,15 +103,15 @@ public class HexCell
 
      
         targetObject.position = end;
-        
-        ResourceManager.Instance.PlayersTurn();
+        Grid.SetSelectPlayerCell();
+        //ResourceManager.Instance.PlayersTurn();
 
-        //Debug.LogError("after enemy Moved it should call active function now");
-        if (ResourceManager.Instance.givenTurn == 0)
-        {
-            Debug.LogWarning("Players turn finally ");
-            Grid.SetSelectPlayerCell();
-        }
+        ////Debug.LogError("after enemy Moved it should call active function now");
+        //if (ResourceManager.Instance.givenTurn == 0)
+        //{
+        //    Debug.LogWarning("Players turn finally ");
+        //    Grid.SetSelectPlayerCell();
+        //}
         
 
         //SelectedState.dontMove = false;

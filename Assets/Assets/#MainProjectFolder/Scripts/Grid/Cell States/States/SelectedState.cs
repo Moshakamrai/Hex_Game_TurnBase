@@ -1,5 +1,5 @@
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SelectedState : BaseCellState
@@ -11,7 +11,7 @@ public class SelectedState : BaseCellState
     public override void Enter(HexCell cell)
     {
         
-        Debug.LogWarning($"Cell {cell.AxialCoordinates} is entering Selected State");
+       // Debug.LogWarning($"Cell {cell.AxialCoordinates} is entering Selected State");
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         CameraController.Instance.onDeselectAction += cell.OnDeselect;
         
@@ -44,10 +44,10 @@ public class SelectedState : BaseCellState
             {
                 HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
                 neighboredCell.Mesher();
-                if (neighbour.TerrainType.ID == 0 && neighboredCell.possibleKill != true)
+                if (neighbour.TerrainType.ID == 0 && neighboredCell.possibleKill != true && !neighboredCell.obstacleExist)
                 { 
                     neighboredCell.canWalk = true;
-                    neighbour.TerrainType.possibleAction = true;
+                 
                 }
                 else if (neighbour.TerrainType.ID == 0 && neighboredCell.possibleKill)
                 {
@@ -57,18 +57,18 @@ public class SelectedState : BaseCellState
                 }
                 if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1 || neighbour.TerrainType.ID == 0)
                 {
-                    if (neighbour != null && neighboredCell.possibleKill)
+                    if (neighboredCell.possibleKill)
                     {
                         neighboredCell.canAction = true;
                         neighboredCell.MesherEnemy();
                         neighboredCell.canWalk = false;     
-                        neighbour.TerrainType.possibleAction = true;
+
                     }
-                    else if (neighbour != null && !neighboredCell.possibleKill)
+                    else if (!neighboredCell.possibleKill && !neighboredCell.obstacleExist)
                     {
                         neighboredCell.Mesher();
                         neighboredCell.canWalk = true;
-                        neighbour.TerrainType.possibleAction = true;
+                        
                     }
                 }
             }           
@@ -79,13 +79,14 @@ public class SelectedState : BaseCellState
             HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
             if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
             {
-                if (attacker != null && attackCell.possibleKill)
+                if (attackCell.possibleKill)
                 {
+                    Debug.LogError("enemy should be here to kill");
                     attackCell.canAction = true;
                     attackCell.MesherEnemy();
                     attackCell.canWalk = false;
                 }
-                else if (attacker != null && !attackCell.possibleKill)
+                else if (!attackCell.possibleKill)
                 {
                     attackCell.Mesher();
                    

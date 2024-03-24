@@ -3,7 +3,7 @@ using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ToonyColorsPro.ShaderGenerator.Enums;
+//using static ToonyColorsPro.ShaderGenerator.Enums;
 
 [RequireComponent(typeof(MeshCollider))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -65,18 +65,10 @@ public class HexTerrain : MonoBehaviour
         {
             currentEnemyObject.GetComponent<EnemyBrain>().TriggerStabbingAnimation();
         }
-        OnTap();
+        
     }
 
-    private void OnTap()
-    {
-        //// Check if the left mouse button was pressed (or a tap on the screen on mobile devices)
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    // Invoke the OnMouseEnterAction event
-        //    OnMouseEnterAction?.Invoke();
-        //}
-    }
+   
     private void OnMouseEnter()
     {
         Debug.Log("Mouse enter");
@@ -144,7 +136,7 @@ public class HexTerrain : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.GetComponent<EnemyBrain>().death)
         {
             enemyExist = false;
-            canAction = false;
+            //canAction = false;
             Destroy(collision.gameObject);
             Debug.LogError("Enemy died here");
 
@@ -156,6 +148,7 @@ public class HexTerrain : MonoBehaviour
             //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
             possibleKill = true;
             enemyExist = true;
+
             //canAction = true;
         }
         else if (collision.gameObject.CompareTag("Barrel"))
@@ -173,6 +166,7 @@ public class HexTerrain : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Block"))
         {
+            Debug.LogError("Block is here");
             obstableObject = collision.gameObject;
             obstacleExist = true;
         }
@@ -196,11 +190,12 @@ public class HexTerrain : MonoBehaviour
             Debug.LogError("Bomb barrel is here");
         }
 
-        else if (collision.gameObject.CompareTag("Block"))
-        {
-            obstableObject = collision.gameObject;
-            obstacleExist = true;
-        }
+        //else if (collision.gameObject.CompareTag("Block"))
+        //{
+        //    Debug.LogError("Block is here");
+        //    obstableObject = collision.gameObject;
+        //    obstacleExist = true;
+        //}
     }
 
     private void OnTriggerStay(Collider other)

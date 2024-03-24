@@ -94,20 +94,7 @@ public class PlayerStateScript : MonoBehaviour
                 RotateTowards(targetPosition);
             }
         }
-       // && Input.GetTouch(0).phase == TouchPhase.Began
-        //else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) // Touch input
-        //{
-        //    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-        //    RaycastHit hit;
-
-        //    if (Physics.Raycast(ray, out hit))
-        //    {
-        //        Vector3 targetPosition = hit.point;
-        //        RotateTowards(targetPosition);
-        //        //CameraController.Instance.onSelectAction?.Invoke();
-        //        onSelectAction?.Invoke();
-        //    }
-        //}
+       
     }
 
     void RotateTowards(Vector3 targetPosition)
@@ -183,7 +170,7 @@ public class PlayerStateScript : MonoBehaviour
         while (targetPosition != null)
         {
             // Move the bullet towards the target
-            bulletPosition.position = Vector3.MoveTowards(bulletPosition.position, targetPosition.position, 250f * Time.deltaTime);
+            bulletPosition.position = Vector3.MoveTowards(bulletPosition.position, targetPosition.position, 300f * Time.deltaTime);
             
             // Check if the bullet has reached the target
             if (transform.position == targetPosition.position)

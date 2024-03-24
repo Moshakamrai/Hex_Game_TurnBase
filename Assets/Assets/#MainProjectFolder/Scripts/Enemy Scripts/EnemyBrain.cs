@@ -11,6 +11,10 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private GameObject playerObject;
     public bool death;
     public int turnToken;
+
+    public ParticleSystem bloodExplode;
+
+    public bool gunner;
     private void Awake()
     {
         
@@ -66,7 +70,8 @@ public class EnemyBrain : MonoBehaviour
 
     public void TriggerDeathAnimation()
     {
-        
+        ResourceManager.Instance.EnemyChecker();
+        bloodExplode.Play();
         enemyAnim.SetTrigger("Death");
     }
 
