@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WalkingTile
+  m_Name: PlayerWalkingTIle
   m_Shader: {fileID: -6465566751694194690, guid: edd7abf643fa4bc4e8561d4c280c97cf,
     type: 3}
   m_Parent: {fileID: 0}
@@ -36,9 +36,8 @@ Material:
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - DepthOnly
   - SHADOWCASTER
@@ -131,12 +130,12 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 0
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectIntensityOutline: 1
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _DstBlendAlpha: 10
     - _EmissionChannel: 4
     - _EnvironmentReflections: 1
@@ -159,9 +158,9 @@ Material:
     - _OutlineMaxWidth: 1
     - _OutlineMinWidth: 1
     - _OutlinePixelSizeType: 0
-    - _OutlineTextureLOD: 8
+    - _OutlineTextureLOD: 4.05
     - _OutlineTextureType: 1
-    - _OutlineWidth: 8.4
+    - _OutlineWidth: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _RampBands: 4
@@ -169,13 +168,13 @@ Material:
     - _RampOffset: 0
     - _RampScale: 1
     - _RampSmoothing: 0.25
-    - _RampThreshold: 0.5
+    - _RampThreshold: 0.01
     - _RampType: 0
     - _ReceiveShadows: 1
     - _ReceiveShadowsOff: 1
     - _ReflectionMapType: 0
     - _ReflectionSmoothness: 0.5
-    - _RenderingMode: 1
+    - _RenderingMode: 0
     - _RimMax: 1
     - _RimMin: 1.262
     - _ShadowColorLightAtten: 1
@@ -188,7 +187,7 @@ Material:
     - _SpecularToonSize: 0.25
     - _SpecularToonSmoothness: 0.05
     - _SpecularType: 0
-    - _SrcBlend: 5
+    - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 1
     - _UseAlphaTest: 0
@@ -206,9 +205,9 @@ Material:
     - _UseShadowTexture: 0
     - _UseSpecular: 0
     - _WorkflowMode: 1
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 0.5882353}
+    - _BaseColor: {r: 0.35293356, g: 0.9528302, b: 0.21124065, a: 0.5882353}
     - _Color: {r: 0.5411765, g: 0.7882353, b: 0.14901951, a: 0.68235296}
     - _EmissionColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
     - _HColor: {r: 0.73800004, g: 0.73800004, b: 0.73800004, a: 1}
