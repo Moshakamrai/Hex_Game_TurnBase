@@ -72,6 +72,16 @@ public class EnemyBrain : MonoBehaviour
             // Continuously rotate towards the player object
             transform.LookAt(playerObject.transform);
         }
+        if (death)
+        {
+            StartCoroutine(DeathDestroy());
+        }
+    }
+
+    private IEnumerator DeathDestroy()
+    {
+        yield return new WaitForSeconds(1.8f);
+        Destroy(gameObject);
     }
 
     public void TriggerDeathAnimation()

@@ -64,7 +64,7 @@ public class SelectedState : BaseCellState
                         neighboredCell.canWalk = false;     
 
                     }
-                    else if (!neighboredCell.possibleKill && !neighboredCell.obstacleExist)
+                    else if (!neighboredCell.possibleKill && !neighboredCell.obstacleExist && !neighboredCell.canMoveEnemy && !neighboredCell.possibleKillPlayer)
                     {
                         neighboredCell.Mesher();
                         neighboredCell.canWalk = true;
@@ -79,22 +79,23 @@ public class SelectedState : BaseCellState
             HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
             if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
             {
-                if (attackCell.possibleKill)
+                if (attackCell.possibleKill || attacker == OnActiveState.activeCell )
                 {
                    // Debug.LogError("enemy should be here to kill");
                     attackCell.canAction = true;
                     attackCell.MesherEnemy();
                     attackCell.canWalk = false;
                 }
-                else if (!attackCell.possibleKill || !attackCell.canWalk)
+                else if (!attackCell.possibleKill && !attackCell.barrelExist && !attackCell.obstacleExist)
                 {
-                    attackCell.UnMesher();
+                    attackCell.Mesher();
                    
                 }
                 if (attackCell.possibleKill)
                 {
                     break;
-                }         
+                } 
+                
             }
         }
         //&& PlayerStateScript.Instance.playerTurn

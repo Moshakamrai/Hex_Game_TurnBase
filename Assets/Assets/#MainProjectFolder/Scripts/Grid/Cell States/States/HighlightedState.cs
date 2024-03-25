@@ -37,14 +37,18 @@ public class HighlightedState : BaseCellState
             SelectedState.storedHexcel.SetAttackHexes(SelectedState.storedHexcel._AttackCells);
             foreach (HexCell neighbour in SelectedState.storedHexcel.Neighbours)
             {
-
-                neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+                HexTerrain neigborcell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                if (!neigborcell.canMoveEnemy && !neigborcell.possibleKillPlayer)
+                {
+                    neigborcell.UnMesher();
+                }
+                
 
             }
             foreach (HexCell attacker in SelectedState.storedHexcel._AttackCells)
             {
-
-                attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
+                HexTerrain attackerCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                attackerCell.UnMesher();
             }
         }
 
