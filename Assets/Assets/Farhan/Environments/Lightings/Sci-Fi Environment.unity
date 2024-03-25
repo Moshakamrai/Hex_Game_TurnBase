@@ -1427,7 +1427,7 @@ MonoBehaviour:
   givenTurn: 0
   enemyObjects: []
   enemyState: {fileID: 0}
-  allCells: {fileID: 0}
+  allCells: {fileID: 1657913340}
   enemyAlive: 0
   levelCompleteUI: {fileID: 0}
 --- !u!4 &507525405

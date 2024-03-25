@@ -88,7 +88,7 @@ public class SelectedState : BaseCellState
                 }
                 else if (!attackCell.possibleKill)
                 {
-                    attackCell.Mesher();
+                    attackCell.UnMesher();
                    
                 }
                 if (attackCell.possibleKill)
