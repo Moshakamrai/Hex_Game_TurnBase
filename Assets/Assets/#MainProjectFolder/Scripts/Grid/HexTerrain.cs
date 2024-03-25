@@ -223,6 +223,7 @@ public class HexTerrain : MonoBehaviour
             possibleKillPlayer = false;
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))

@@ -77,8 +77,9 @@ public class EnemyBrain : MonoBehaviour
 
     private IEnumerator DeathDestroy()
     {
-        yield return new WaitForSeconds(1.8f);
-        Destroy(gameObject);
+        gameObject.GetComponent<CapsuleCollider>().enabled =false;
+        yield return new WaitForSeconds(2f);
+        //Destroy(gameObject);
     }
 
     public void TriggerDeathAnimation()
