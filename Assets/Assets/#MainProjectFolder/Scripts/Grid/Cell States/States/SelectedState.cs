@@ -86,7 +86,7 @@ public class SelectedState : BaseCellState
                     attackCell.MesherEnemy();
                     attackCell.canWalk = false;
                 }
-                else if (!attackCell.possibleKill)
+                else if (!attackCell.possibleKill || !attackCell.canWalk)
                 {
                     attackCell.UnMesher();
                    
