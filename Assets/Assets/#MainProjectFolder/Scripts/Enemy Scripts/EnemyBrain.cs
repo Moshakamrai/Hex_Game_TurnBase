@@ -8,7 +8,7 @@ public class EnemyBrain : MonoBehaviour
 {
     [SerializeField] private bool turnState;
     [SerializeField] private Animator enemyAnim;
-    [SerializeField] private HexTerrain tileState;
+    public HexTerrain tileState;
     [SerializeField] private GameObject playerObject;
     public bool death;
     public int turnToken;
@@ -29,7 +29,7 @@ public class EnemyBrain : MonoBehaviour
        
         //turnToken = 1;
         enemyAnim = GetComponent<Animator>();
-        playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerObject = PlayerStateScript.Instance.gameObject;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,7 +52,7 @@ public class EnemyBrain : MonoBehaviour
         // This method will be called when the object is clicked or tapped
         // Add your desired functionality here
         death = true;
-        ResourceManager.Instance.GiveToken();
+        //ResourceManager.Instance.GiveToken();
         Debug.Log("Mouse click or tap detected on " + gameObject.name);
         if (tileState.canAction == true && tileState.possibleKill == true)
         {
@@ -72,10 +72,7 @@ public class EnemyBrain : MonoBehaviour
             // Continuously rotate towards the player object
             transform.LookAt(playerObject.transform);
         }
-        if (death)
-        {
-            StartCoroutine(DeathDestroy());
-        }
+        
     }
 
     private IEnumerator DeathDestroy()
@@ -87,9 +84,12 @@ public class EnemyBrain : MonoBehaviour
     public void TriggerDeathAnimation()
     {
         death = true;
+        tileState.possibleKill = false;
+        tileState.enemyExist = false;
         ResourceManager.Instance.EnemyChecker();
         bloodExplode.Play();
         enemyAnim.SetTrigger("Death");
+        StartCoroutine(DeathDestroy());
     }
     public void TriggerShootingAnimation()
     {
@@ -135,8 +135,11 @@ public class EnemyBrain : MonoBehaviour
 
     public void TriggerStabbingAnimation()
     {
+        StartCoroutine(MoveCoroutine(PlayerStateScript.Instance.gameObject.transform.position, 0.8f));
         enemyAnim.SetTrigger("Slash");
     }
+
+
     public void TriggerPlayerDeath()
     {
         PlayerStateScript.Instance.DeathAnimationTrigger();
@@ -144,5 +147,23 @@ public class EnemyBrain : MonoBehaviour
     public void TakeTurn()
     {
         turnToken--;
+    }
+
+
+    private IEnumerator MoveCoroutine(Vector3 targetPosition, float duration)
+    {
+        Vector3 initialPosition = transform.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure final position
+        transform.position = targetPosition;
     }
 }

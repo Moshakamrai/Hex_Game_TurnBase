@@ -120,6 +120,7 @@ public class HexTerrain : MonoBehaviour
         thisMesh.enabled = true;
         thisMesh.material = InteractableMat;
         canAction = true;
+        canMoveEnemy = false;
     }
 
     public void UnMesher()
@@ -136,6 +137,7 @@ public class HexTerrain : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.GetComponent<EnemyBrain>().death)
         {
             enemyExist = false;
+            possibleKill = false;
             //canAction = false;
             Destroy(collision.gameObject);
             Debug.LogError("Enemy died here");
@@ -169,6 +171,7 @@ public class HexTerrain : MonoBehaviour
             //Debug.LogError("Block is here");
             obstableObject = collision.gameObject;
             obstacleExist = true;
+            canMoveEnemy = false;
         }
 
     }
@@ -189,13 +192,6 @@ public class HexTerrain : MonoBehaviour
             barrelObject = collision.gameObject;
            // Debug.LogError("Bomb barrel is here");
         }
-
-        //else if (collision.gameObject.CompareTag("Block"))
-        //{
-        //    Debug.LogError("Block is here");
-        //    obstableObject = collision.gameObject;
-        //    obstacleExist = true;
-        //}
     }
 
     private void OnTriggerStay(Collider other)
@@ -204,7 +200,17 @@ public class HexTerrain : MonoBehaviour
         {
             
             currentPlayerObject = other.gameObject;
-            possibleKill = true;
+            possibleKillPlayer = true;
+            playerExist = true;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            currentPlayerObject = other.gameObject;
+            possibleKillPlayer = true;
             playerExist = true;
         }
     }
@@ -214,7 +220,7 @@ public class HexTerrain : MonoBehaviour
         {
             currentPlayerObject = null;
             playerExist = false;
-            possibleKill = false;
+            possibleKillPlayer = false;
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -236,24 +242,31 @@ public class HexTerrain : MonoBehaviour
     {
         Debug.LogError("ON FIRE");
 
-           // PlayerStateScript.Instance.ShootBarrelTrigger(barrelObject);
-            
+        // PlayerStateScript.Instance.ShootBarrelTrigger(barrelObject);
+        
 
-            if (currentEnemyObject != null)
-            {
-                currentEnemyObject.GetComponent<EnemyBrain>().TriggerDeathAnimation();
-            }
-            if (currentPlayerObject != null)
-            {
-                PlayerStateScript.Instance.DeathAnimationTrigger();
-            }
+       if (currentEnemyObject != null)
+       {
             canAction = false;
-            canWalk = false;
+            
             canMoveEnemy = false;
             enemyExist = false;
+           
+            currentEnemyObject.GetComponent<EnemyBrain>().TriggerDeathAnimation();
+       }
+       if (currentPlayerObject != null)
+       {
             playerExist = false;
+            canWalk = false;
+            PlayerStateScript.Instance.DeathAnimationTrigger();
+       }
 
-        
+        canAction = false;
+        canWalk = false;
+        canMoveEnemy = false;
+        enemyExist = false;
+        playerExist = false;
+
 
     }
 

@@ -32,29 +32,29 @@ public class OnActiveState :BaseCellState
             }
         }
 
-        if (currentCell.enemyExist )
+        if (currentCell.enemyExist)
         {
-            
+
             cell.SetNeighbours(cell.Neighbours);
             foreach (HexCell neighbour in cell.Neighbours)
             {
                 Debug.LogError("after enemy Moved it should Unmesh now");
                 neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
             }
-
-            cell.SetNeighbours(cell.Neighbours);
-            if (currentCell.currentEnemyObject.GetComponent<EnemyBrain>().gunner)
+            if (currentCell.currentEnemyObject.GetComponent<EnemyBrain>() != null)
             {
-                cell.EnemySetAttackHexes(cell._AttackCells);
-                foreach (HexCell attacker in cell._AttackCells)
+                if (currentCell.currentEnemyObject.GetComponent<EnemyBrain>().gunner)
                 {
-                    HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                    if (cell.TerrainType.ID == 0)
+                    Debug.LogError("EnemyMesh process starts");
+                    cell.EnemySetAttackHexes(cell._AttackCells);
+                    foreach (HexCell attacker in cell._AttackCells)
                     {
+                        Debug.LogError("EnemyMesh process Mid Point");
+                        HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
                         if (attackCell.playerExist || attackCell.possibleKillPlayer)
                         {
-                            Debug.LogError("Can Kill Player next turn");
-                            //canKillPlayer = true;
+                            Debug.LogError("Got the freaking player");
+                            currentCell.currentEnemyObject.GetComponent<EnemyBrain>().canKillPlayer = true;
                             currentCell.currentEnemyObject.GetComponent<EnemyBrain>().TriggerShootingAnimation();
                             attackCell.EnemyKillPlayerMesher();
                             //attackCell.canMoveEnemy = false;
@@ -73,105 +73,72 @@ public class OnActiveState :BaseCellState
                     }
                 }
             }
-            if (!currentCell.currentEnemyObject.GetComponent<EnemyBrain>().death)
-                {
-                foreach (HexCell neighbour in cell.Neighbours)
-                {
-                    HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                    if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist && !neighboredCell.obstacleExist)
-                    {
-                        if (enemyObject.turnToken == 1 && enemyObject != null)
-                        {
-                            Vector2 distanceToNeighbour = neighbour.AxialCoordinates - HexCell.playerPosCell.AxialCoordinates;
-                            Vector2 distanceToCell = cell.AxialCoordinates - HexCell.playerPosCell.AxialCoordinates;
-                            if(distanceToNeighbour.magnitude < distanceToCell.magnitude)
-                            {
-                                neighboredCell.possibleKill = true;
-                                if (neighboredCell.playerExist)
-                                {
+            
 
-                                }
-                                activeCell = neighbour;
-                                enemyObject.turnToken = 0;
-                                enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
+            foreach (HexCell neighbour in cell.Neighbours)
+            {
+                 HexTerrain neighboredCell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                if (neighbour.TerrainType.ID == 0 && !neighboredCell.playerExist && !neighboredCell.enemyExist )
+                {
+                    if (enemyObject.turnToken == 1 && enemyObject != null)
+                    {
+                        Vector2 distanceToNeighbour = neighbour.AxialCoordinates - HexCell.playerPosCell.AxialCoordinates;
+                        Vector2 distanceToCell = cell.AxialCoordinates - HexCell.playerPosCell.AxialCoordinates;
+                        if (distanceToNeighbour.magnitude < distanceToCell.magnitude && neighboredCell.canMoveEnemy)
+                        {
+                            neighboredCell.possibleKill = true;
+                            if (neighboredCell.playerExist)
+                            {
+                                enemyObject.TriggerStabbingAnimation();
                             }
-                            
+
+                            enemyObject.turnToken = 0;
+                            enemyObject.StartCoroutineExternally(cell.MoveToCell(enemyObject.gameObject.transform, neighbour));
+
+                            activeCell = neighbour;
 
                         }
-                        if (activeCell != null)
+                    }
+                }
+                if (activeCell != null)
+                {
+                    activeCell.SetNeighbours(activeCell.Neighbours);
+                    foreach (HexCell newNeighbor in activeCell.Neighbours)
+                    {
+                        HexTerrain neighboredCell2 = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                        if (neighboredCell2.playerExist)
                         {
-                            activeCell.SetNeighbours(activeCell.Neighbours);
-                            foreach (HexCell newNeighbor in activeCell.Neighbours)
-                            {
-                                HexTerrain neighboredCell2 = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                                if (neighboredCell2.playerExist)
-                                {
-                                    neighboredCell2.EnemyKillPlayerMesher();
-                                }
-                                else if (neighboredCell2.barrelExist)
-                                {
-                                    neighboredCell2.canMoveEnemy = false;
-                                }
-                                else
-                                {
-                                    neighboredCell2.canMoveEnemy = true;
-                                    neighboredCell2.EnemyViewMesher();
-                                }
 
-                            }
-                            //if (currentCell.currentEnemyObject.GetComponent<EnemyBrain>().gunner)
-                            //{
-                            //    activeCell.EnemySetAttackHexes(activeCell._AttackCells);
-                            //    foreach (HexCell attacker in cell._AttackCells)
-                            //    {
-                            //        HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                            //        if (cell.TerrainType.ID == 0)
-                            //        {
-                            //            if (attackCell.playerExist || attackCell.possibleKillPlayer)
-                            //            {
-                            //                Debug.LogError("Can Kill Player next turn");
-                            //                //canKillPlayer = true;
-                            //                currentCell.currentEnemyObject.GetComponent<EnemyBrain>().TriggerShootingAnimation();
-                            //                attackCell.EnemyKillPlayerMesher();
-                            //                //attackCell.canMoveEnemy = false;
-                            //            }
-                            //            else if (!attackCell.enemyExist && !attackCell.barrelExist && !attackCell.obstacleExist)
-                            //            {
-                            //                Debug.LogError("enemyMeshing");
-                            //                attackCell.EnemyViewMesher();
-
-                            //            }
-                            //            if (attackCell.playerExist || attackCell.obstacleExist)
-                            //            {
-                            //                Debug.LogError("breaking");
-                            //                break;
-                            //            }
-                            //        }
-                            //    }
-                            //}
+                            neighboredCell2.EnemyKillPlayerMesher();
+                        }
+                        else if (neighboredCell2.barrelExist || neighboredCell2.obstacleExist)
+                        {
+                            neighboredCell2.canMoveEnemy = false;
                         }
                         else
                         {
-                            neighboredCell.canMoveEnemy = true;
-                            neighboredCell.EnemyViewMesher();
+                            neighboredCell2.canMoveEnemy = true;
+                            neighboredCell2.EnemyViewMesher();
                         }
-                         
+
                     }
-                    else if (neighbour.TerrainType.ID == 0 && neighboredCell.playerExist)
-                    {
-                        neighboredCell.EnemyKillPlayerMesher();
-                        
-                        Debug.LogError("kill player");
-                    }
-                    if (neighbour.TerrainType.ID == 1)
-                    {
-                        if (neighbour != null)
-                        {
-                            neighboredCell.canMoveEnemy = false;
-                        }
-                    }
-                    //ResourceManager.Instance.GiveToken(enemyObject.gameObject);
                 }
+                else
+                    {
+                        neighboredCell.canMoveEnemy = true;
+                        neighboredCell.EnemyViewMesher();
+                    }
+                      
+                 
+                 if (neighbour.TerrainType.ID == 0 && neighboredCell.playerExist && !currentCell.currentEnemyObject.GetComponent<EnemyBrain>().gunner)
+                 {
+                    neighboredCell.EnemyKillPlayerMesher();
+                    currentCell.currentEnemyObject.GetComponent<EnemyBrain>().TriggerStabbingAnimation();
+                    Debug.LogError("kill player");
+                 }
+                 
+                    //ResourceManager.Instance.GiveToken(enemyObject.gameObject);
+                
                 
                 
 
@@ -195,3 +162,4 @@ public class OnActiveState :BaseCellState
         Debug.LogError($"Cell {cell.AxialCoordinates} is Activated State");
     }
 }
+

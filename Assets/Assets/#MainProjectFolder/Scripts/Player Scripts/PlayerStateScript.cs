@@ -150,6 +150,7 @@ public class PlayerStateScript : MonoBehaviour
 
     public void TriggerEnemyDeathAnimation()
     {
+        enemyTarget.GetComponent<EnemyBrain>().tileState.enemyExist = false;
         enemyTarget.GetComponent<EnemyBrain>().TriggerDeathAnimation();
     }
     public void StabAnimationTrigger()
@@ -188,7 +189,12 @@ public class PlayerStateScript : MonoBehaviour
 
     public void GiveTheTokens()
     {
-        ResourceManager.Instance.GiveToken();
+        StartCoroutine(WaitABit());
     }
 
+    private IEnumerator WaitABit()
+    {
+        yield return new WaitForSeconds(0.2f);
+        ResourceManager.Instance.GiveToken();
+    }
 }

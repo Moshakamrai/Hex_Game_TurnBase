@@ -79,7 +79,7 @@ public class SelectedState : BaseCellState
             HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
             if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
             {
-                if (attackCell.possibleKill || attacker == OnActiveState.activeCell )
+                if (attackCell.enemyExist || attacker == OnActiveState.activeCell )
                 {
                    // Debug.LogError("enemy should be here to kill");
                     attackCell.canAction = true;
@@ -91,7 +91,7 @@ public class SelectedState : BaseCellState
                     attackCell.Mesher();
                    
                 }
-                if (attackCell.possibleKill)
+                if (attackCell.enemyExist)
                 {
                     break;
                 } 
