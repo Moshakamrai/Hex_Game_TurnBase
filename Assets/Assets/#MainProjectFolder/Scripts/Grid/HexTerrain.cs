@@ -66,6 +66,10 @@ public class HexTerrain : MonoBehaviour
             currentEnemyObject.GetComponent<EnemyBrain>().TriggerStabbingAnimation();
         }
         
+        //if (playerExist)
+        //{
+        //    TutorialScript.Instance.JumpOverObject(PlayerStateScript.Instance.gameObject);
+        //}
     }
 
    
@@ -150,7 +154,7 @@ public class HexTerrain : MonoBehaviour
             //cellToken = collision.gameObject.GetComponent<EnemyBrain>().turnToken;
             possibleKill = true;
             enemyExist = true;
-
+            Debug.LogError("horin horin");
             //canAction = true;
         }
         else if (collision.gameObject.CompareTag("Barrel"))
@@ -180,9 +184,7 @@ public class HexTerrain : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && !collision.gameObject.GetComponent<EnemyBrain>().death)
         {
             
-            currentEnemyObject = collision.gameObject;
-            
-            enemyExist = true;       
+            currentEnemyObject = collision.gameObject;    
            // possibleKill= false;
             onTriggerEnemy?.Invoke();
         } 
@@ -192,6 +194,13 @@ public class HexTerrain : MonoBehaviour
             barrelObject = collision.gameObject;
            // Debug.LogError("Bomb barrel is here");
         }
+    }
+
+    public void KillthePlayer()
+    {
+        enemyExist = false;
+        possibleKill = false;
+
     }
 
     private void OnTriggerStay(Collider other)

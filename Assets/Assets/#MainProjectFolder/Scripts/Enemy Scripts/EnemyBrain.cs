@@ -9,6 +9,7 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private bool turnState;
     [SerializeField] private Animator enemyAnim;
     public HexTerrain tileState;
+    public HexTerrain previousTileState;
     [SerializeField] private GameObject playerObject;
     public bool death;
     public int turnToken;
@@ -18,6 +19,8 @@ public class EnemyBrain : MonoBehaviour
 
     [SerializeField] private Transform shootDirection;
     [SerializeField] private GameObject bulletPrefab;
+
+
 
     public bool gunner;
     private void Awake()
@@ -41,6 +44,14 @@ public class EnemyBrain : MonoBehaviour
         
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<HexTerrain>() != null)
+        {
+            previousTileState = collision.gameObject.GetComponent<HexTerrain>();
+        }
+    }
+
     public void StartCoroutineExternally(IEnumerator coroutine)
     {
         TriggerMovementAnimation();
@@ -49,6 +60,7 @@ public class EnemyBrain : MonoBehaviour
 
     private void OnMouseDown()
     {
+
         // This method will be called when the object is clicked or tapped
         // Add your desired functionality here
         death = true;
@@ -60,7 +72,7 @@ public class EnemyBrain : MonoBehaviour
             tileState.canAction = false;
             tileState.possibleKill = false;
         }
-        
+        previousTileState.KillthePlayer();
     }
 
 
@@ -77,9 +89,12 @@ public class EnemyBrain : MonoBehaviour
 
     private IEnumerator DeathDestroy()
     {
+        previousTileState.KillthePlayer();
         gameObject.GetComponent<CapsuleCollider>().enabled =false;
         yield return new WaitForSeconds(2f);
-        //Destroy(gameObject);
+        tileState.KillthePlayer();
+        Destroy(gameObject);
+
     }
 
     public void TriggerDeathAnimation()

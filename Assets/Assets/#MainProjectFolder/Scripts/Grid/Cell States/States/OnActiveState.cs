@@ -10,14 +10,14 @@ public class OnActiveState :BaseCellState
     private Coroutine moveEnemyCoroutine;
     public static HexCell storedEnemyCell;
     public static HexCell activeCell;
-
+    
     public override void Enter(HexCell cell)
     {
        
         Debug.LogWarning("Active ceel enemy " + cell);
         HexTerrain currentCell = cell.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
         EnemyBrain enemyObject = cell.Terrain.gameObject.GetComponentInChildren<EnemyBrain>();
-
+        
 
         if (currentCell.barrelExist && currentCell.barrelExploded)
         {
@@ -54,7 +54,8 @@ public class OnActiveState :BaseCellState
                         if (attackCell.playerExist || attackCell.possibleKillPlayer)
                         {
                             Debug.LogError("Got the freaking player");
-                            currentCell.currentEnemyObject.GetComponent<EnemyBrain>().canKillPlayer = true;
+                            //currentCell.currentEnemyObject.GetComponent<EnemyBrain>().canKillPlayer = true;
+
                             currentCell.currentEnemyObject.GetComponent<EnemyBrain>().TriggerShootingAnimation();
                             attackCell.EnemyKillPlayerMesher();
                             //attackCell.canMoveEnemy = false;
@@ -73,7 +74,7 @@ public class OnActiveState :BaseCellState
                     }
                 }
             }
-            
+
 
             foreach (HexCell neighbour in cell.Neighbours)
             {

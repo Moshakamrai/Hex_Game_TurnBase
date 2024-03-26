@@ -76,10 +76,8 @@ public class HexCell
         cameraTarget.position = end; // Ensure the final position is accurate
         //SelectedState.moveCount++;
         PlayerStateScript.Instance.IdleAnimationTrigger();
-        
-       // ResourceManager.Instance.GiveToken();
-       // Grid.SetActiveCells();
-        
+       
+
     }
 
     public IEnumerator MoveToCell(Transform targetObject, HexCell cell)
@@ -114,7 +112,7 @@ public class HexCell
         //    Debug.LogWarning("Players turn finally ");
         //    Grid.SetSelectPlayerCell();
         //}
-        
+
 
         //SelectedState.dontMove = false;
 
@@ -124,7 +122,7 @@ public class HexCell
         //{
         //    neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>().UnMesher();
         //}
-
+        //TutorialScript.Instance.JumpOverObject(PlayerStateScript.Instance.gameObject);
     }
 
 

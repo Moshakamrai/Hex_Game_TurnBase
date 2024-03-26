@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.SceneManagement;
 public class PlayerStateScript : MonoBehaviour
 {
     private static PlayerStateScript instance;
@@ -147,7 +148,13 @@ public class PlayerStateScript : MonoBehaviour
     {
         enemyTarget.GetComponent<BarrelScript>().TriggerDeathAnimation();
     }
-
+    public void ReloadLevel()
+    {
+        OnActiveState.storedEnemyCell = null;
+        OnActiveState.activeCell = null;
+        SelectedState.storedHexcel = null;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void TriggerEnemyDeathAnimation()
     {
         enemyTarget.GetComponent<EnemyBrain>().tileState.enemyExist = false;
@@ -171,7 +178,7 @@ public class PlayerStateScript : MonoBehaviour
         while (targetPosition != null)
         {
             // Move the bullet towards the target
-            bulletPosition.position = Vector3.MoveTowards(bulletPosition.position, targetPosition.position, 300f * Time.deltaTime);
+            bulletPosition.position = Vector3.MoveTowards(bulletPosition.position, targetPosition.position, 400f * Time.deltaTime);
             
             // Check if the bullet has reached the target
             if (transform.position == targetPosition.position)
@@ -194,7 +201,12 @@ public class PlayerStateScript : MonoBehaviour
 
     private IEnumerator WaitABit()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         ResourceManager.Instance.GiveToken();
+    }
+
+    public void ChangeBulletUI()
+    {
+        UIBullets.Instance.FiredBullet();
     }
 }
