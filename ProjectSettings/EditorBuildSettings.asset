@@ -5,36 +5,33 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level1 Lighting.unity
-    guid: 9fb8f006d67347b489a31556a9315f3f
-  - enabled: 0
-    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level2 Lighting.unity
-    guid: a4684eccec89980429d8d7d6f20cdc0b
-  - enabled: 0
-    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level3 Lighting.unity
-    guid: dfd81012b962dc044967b62f4912acc2
-  - enabled: 0
-    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level4 Lighting.unity
-    guid: 4c47dfe1b1c96d34ab2ac8eab6939e2b
-  - enabled: 0
-    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Level5 Lighting.unity
-    guid: 861e0f619828d90408c7b76840b48bbd
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Ice Leve 1.unity
+    guid: 4c49d9d7d1c7c634dac5b617b8f69e36
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Ice Leve 2.unity
+    guid: af55059ca8b0bfb4daa22b62e8fcbe23
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Ice Leve 3.unity
+    guid: c0f9bfdfb030e034bb406c85f331cd04
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Ice Leve 4.unity
+    guid: dbfb7c96aca61a146a59561b0e023ecf
+  - enabled: 1
+    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Ice Leve 5.unity
+    guid: 576323cf684419c47bceb9dd5c758be1
   - enabled: 1
     path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Sci-Fi level 6.unity
     guid: 3efaa5ddc18892449ba165ee9219a2b8
   - enabled: 1
     path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Sci-Fi level 7.unity
-    guid: c52f56b40256a5741bffa5c8b39c9923
+    guid: 7d5a2d7cf233b9342bba871bf62167b3
   - enabled: 1
     path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Sci-Fi level 8.unity
     guid: 650f7c08d62d99646b00dc795587fc39
   - enabled: 1
     path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Sci-Fi level 9.unity
     guid: 5309d857f1919934d8a11a36c77d6a19
-  - enabled: 0
-    path: Assets/Assets/#MainProjectFolder/Scenes/Levels/Sci-Fi level 10.unity
-    guid: 86fcb5a5bf2b5244ab832c355bef3911
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 701a903126f7f7548a1f377164716410,
       type: 2}
