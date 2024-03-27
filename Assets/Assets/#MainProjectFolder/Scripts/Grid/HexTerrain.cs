@@ -30,12 +30,13 @@ public class HexTerrain : MonoBehaviour
     //public int cellToken;
     MeshRenderer thisMesh;
 
-    
+    public bool enemyShootRange;
 
     public GameObject currentEnemyObject;
     public GameObject currentPlayerObject;
     public GameObject barrelObject;
     public GameObject obstableObject;
+
     private void Start()
     {
         parentCollider = GetComponent<Collider>();
@@ -66,10 +67,7 @@ public class HexTerrain : MonoBehaviour
             currentEnemyObject.GetComponent<EnemyBrain>().TriggerStabbingAnimation();
         }
         
-        //if (playerExist)
-        //{
-        //    TutorialScript.Instance.JumpOverObject(PlayerStateScript.Instance.gameObject);
-        //}
+        
     }
 
    
@@ -91,7 +89,7 @@ public class HexTerrain : MonoBehaviour
     {
         thisMesh.enabled = true;
         thisMesh.material = activeMatColor;
-
+       
     }
     public void EnemyViewMesher()
     {
@@ -102,6 +100,7 @@ public class HexTerrain : MonoBehaviour
     {
         thisMesh.enabled = true;
         thisMesh.material = InteractableMat;
+        possibleKillPlayer = true;
     }
     public void MesherEnemy()
     {
@@ -113,6 +112,7 @@ public class HexTerrain : MonoBehaviour
 
     public void MesherPlayer()
     {
+        Debug.Log("MesherPlayer Happend");
         thisMesh.enabled = true;
         thisMesh.material = InteractableMat;
         //canActionPlayer = true;
@@ -131,6 +131,7 @@ public class HexTerrain : MonoBehaviour
     {
         thisMesh.enabled = false;
         thisMesh.material = null;
+        enemyShootRange = false;
         //canAction = false;
         //possibleKill = false;
         // Debug.LogError("UNMESHER");
@@ -209,7 +210,7 @@ public class HexTerrain : MonoBehaviour
         {
             
             currentPlayerObject = other.gameObject;
-            possibleKillPlayer = true;
+           // possibleKillPlayer = true;
             playerExist = true;
         }
     }
@@ -219,7 +220,7 @@ public class HexTerrain : MonoBehaviour
         {
 
             currentPlayerObject = other.gameObject;
-            possibleKillPlayer = true;
+            //possibleKillPlayer = true;
             playerExist = true;
         }
     }

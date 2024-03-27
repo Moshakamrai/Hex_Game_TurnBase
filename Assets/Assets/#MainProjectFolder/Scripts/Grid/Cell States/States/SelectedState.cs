@@ -25,12 +25,17 @@ public class SelectedState : BaseCellState
             if (cell.TerrainType.ID == 5 || cell.TerrainType.ID == 1)
             {
                 PlayerStateScript.Instance.isShooting = true;
-                Debug.LogError("shoould shoot");
+                //Debug.LogError("shoould shoot");
                // PlayerStateScript.Instance.ShootAnimationTrigger();
             }
         }
-        
-       
+        if(currentCell.playerExist && currentCell.possibleKillPlayer)
+        {
+            currentCell.EnemyKillPlayerMesher();
+            Debug.LogError("DANGER");
+        }
+
+
 
         if (moveCameraCoroutine != null)
         {
@@ -57,7 +62,7 @@ public class SelectedState : BaseCellState
                 }
                 if (neighbour.TerrainType.ID == 5 || neighbour.TerrainType.ID == 1 || neighbour.TerrainType.ID == 0)
                 {
-                    if (neighboredCell.possibleKill)
+                    if (neighboredCell.possibleKill && neighboredCell.enemyExist)
                     {
                         neighboredCell.canAction = true;
                         neighboredCell.MesherEnemy();
@@ -73,31 +78,35 @@ public class SelectedState : BaseCellState
                 }
             }           
         }
-        cell.SetAttackHexes(cell._AttackCells);
-        foreach (HexCell attacker in cell._AttackCells)
+        if (currentCell.playerExist)
         {
-            HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-            if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
+            cell.SetAttackHexes(cell._AttackCells);
+            foreach (HexCell attacker in cell._AttackCells)
             {
-                if (attackCell.enemyExist || attacker == OnActiveState.activeCell )
+                HexTerrain attackCell = attacker.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
+                if (attacker.TerrainType.ID == 5 || attacker.TerrainType.ID == 1 || cell.TerrainType.ID == 0)
                 {
-                   // Debug.LogError("enemy should be here to kill");
-                    attackCell.canAction = true;
-                    attackCell.MesherEnemy();
-                    attackCell.canWalk = false;
+                    if (attackCell.enemyExist || attacker == OnActiveState.activeCell)
+                    {
+                        // Debug.LogError("enemy should be here to kill");
+                        attackCell.canAction = true;
+                        attackCell.MesherEnemy();
+                        attackCell.canWalk = false;
+                    }
+                    else if (!attackCell.possibleKill && !attackCell.barrelExist && !attackCell.obstacleExist)
+                    {
+                        attackCell.Mesher();
+
+                    }
+                    if (attackCell.enemyExist)
+                    {
+                        break;
+                    }
+
                 }
-                else if (!attackCell.possibleKill && !attackCell.barrelExist && !attackCell.obstacleExist)
-                {
-                    attackCell.Mesher();
-                   
-                }
-                if (attackCell.enemyExist)
-                {
-                    break;
-                } 
-                
             }
         }
+       
         //&& PlayerStateScript.Instance.playerTurn
         //&& moveCount % 2 == 0
         if (currentCell.canWalk )

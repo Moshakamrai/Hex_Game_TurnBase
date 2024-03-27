@@ -126,7 +126,7 @@ public class HexCell
     }
 
 
-
+   
 
     public void SetCoordinates(Vector2 offsetCoordinates, HexOrientation orientation)
     {

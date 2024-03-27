@@ -38,7 +38,7 @@ public class HighlightedState : BaseCellState
             foreach (HexCell neighbour in SelectedState.storedHexcel.Neighbours)
             {
                 HexTerrain neigborcell = neighbour.Terrain.gameObject.GetComponentInChildren<HexTerrain>();
-                if (!neigborcell.canMoveEnemy && !neigborcell.possibleKillPlayer)
+                if (!neigborcell.canMoveEnemy || !neigborcell.possibleKillPlayer)
                 {
                     neigborcell.UnMesher();
                 }

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Barrel
   - Block
+  - Grid
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStateScript : MonoBehaviour
 {
     private static PlayerStateScript instance;
+    [SerializeField] private HexGrid grid;
 
     [SerializeField] private Animator playerAnim;
     [SerializeField] private GameObject playerContainer;
@@ -61,6 +62,7 @@ public class PlayerStateScript : MonoBehaviour
     {
         playerTurn = true;
         firstTurn = true;
+        grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<HexGrid>();
     }
     void Update()
     {
@@ -106,7 +108,14 @@ public class PlayerStateScript : MonoBehaviour
 
         transform.rotation = rotation;
     }
+    public void ReloadLevelFunction()
+    {
+        // Get the current scene index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+        // Reload the current scene
+        SceneManager.LoadScene(currentSceneIndex);
+    }
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Tile"))
@@ -133,14 +142,17 @@ public class PlayerStateScript : MonoBehaviour
 
     public void ShootAnimationTrigger(GameObject target)
     {
+        UIBullets.Instance.FiredBullet();
         enemyTarget = target;
+        grid.SetSelectPlayerCell();
         playerAnim.SetTrigger("Shooting");  
     }
 
     public void ShootBarrelTrigger(GameObject barrel)
     {
-        //enemyTarget = 
+        UIBullets.Instance.FiredBullet();
         enemyTarget = barrel;
+        grid.SetSelectPlayerCell();
         playerAnim.SetTrigger("Shooting2");
     }
 
